@@ -1,0 +1,21 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-self: stretch;
+    gap: 5px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons button {
+    flex-grow: 1;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+}
