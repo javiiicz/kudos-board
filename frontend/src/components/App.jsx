@@ -3,13 +3,16 @@ import "../styles/App.css";
 import Footer from "./Footer";
 import BoardDisplay from "./BoardDisplay";
 import Header from "./Header.jsx";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
     return (
         <>
             <Header />
             <main>
-                <BoardDisplay />
+                <Routes>
+                    <Route path="/" element={<BoardDisplay />}/>
+                </Routes>
             </main>
             <Footer />
         </>
