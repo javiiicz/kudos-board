@@ -1,0 +1,13 @@
+.board-container {
+    max-height: 100%;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: start;
+    gap: 30px;
+
+    padding: 30px;
+}
