@@ -3,7 +3,7 @@ import Search from "./Search";
 import Filters from "./Filters";
 import CreateButton from "./CreateButton";
 
-const Header = () => {
+const HomeHeader = () => {
     return (
         <header>
             <h1>Kudos Board!</h1>
@@ -14,4 +14,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default HomeHeader;
