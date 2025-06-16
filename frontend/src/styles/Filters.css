@@ -1,0 +1,17 @@
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0 20px;
+}
+
+.filter {
+    padding: 5px;
+    background-color: white;
+    border-style: none;
+}
+
+.filter:hover {
+    font-weight: 600;
+}
