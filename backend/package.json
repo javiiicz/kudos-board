@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --env-file=.env --watch server.js",
+    "start": "node server.js",
+    "build": "npm install && npm run db:init",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset --force",
+    "db:init": "npm run db:reset && npm run db:migrate",
+    "psql": "psql shelterdb -U app_user"
   },
   "keywords": [],
   "author": "",
