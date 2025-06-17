@@ -11,9 +11,9 @@ const Board = ({board}) => {
     return (
         <div className="board" onClick={handleClick}>
             <h2>{board.title}</h2>
-            <img src={board.image} alt={board.title}></img>
+            <img src={board.imageUrl} alt={board.title}></img>
             <h3>{board.author}</h3>
-            <p>{board.desc}</p>
+            <p>{board.description}</p>
         </div>
     )
 }
