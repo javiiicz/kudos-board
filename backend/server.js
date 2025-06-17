@@ -43,6 +43,32 @@ server.get("/boards/:id", async (req, res, next) => {
 })
 
 
+// [POST] new board
+server.post("/boards", async (req, res, next) => {
+    let body = req.body;
+
+    let {title, imageUrl, description, category, author} = body
+
+
+    if (title === undefined ||  imageUrl === undefined || description === undefined || category === undefined) {
+        next({message: "The new board is missing information", status: 400})
+        return
+    }
+
+    const added = await prisma.board.create({
+        data: {
+            title,
+            imageUrl,
+            description,
+            category,
+            author
+        }
+    })
+
+    res.json(added);
+})
+
+
 // [CATCH-ALL]
 server.use((req, res, next) => {
     next({ status: 404, message: "Not found" });
