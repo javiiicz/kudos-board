@@ -20,7 +20,7 @@ model Board {
   imageUrl    String
   description String
   category    String
-  author      Srting?
+  author      String?
   cards       Card[]   @relation("BoardCards")
 }
 
