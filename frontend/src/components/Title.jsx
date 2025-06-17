@@ -10,7 +10,7 @@ const Title = () => {
 
     return (
         <button onClick={handleClick} className="title-button">
-            <h1>Kudos Board!</h1>
+            <h1>Kudomate</h1>
         </button>
     );
 };
