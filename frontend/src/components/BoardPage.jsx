@@ -1,14 +1,14 @@
 import "../styles/BoardPage.css";
 import { useParams } from "react-router-dom";
 import BoardDetails from "./BoardDetails";
-import HomeHeader from "./HomeHeader";
+import BoardHeader from "./BoardHeader"
 
 const BoardPage = () => {
     const { id } = useParams();
 
     return (
         <>
-            <HomeHeader />
+            <BoardHeader/>
             <main className="home-main">
                 <BoardDetails id={id} />
             </main>
