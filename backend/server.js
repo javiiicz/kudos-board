@@ -85,6 +85,41 @@ server.post("/boards", async (req, res, next) => {
 })
 
 
+// [POST] new card
+server.post("/cards", async (req, res, next) => {
+    let body = req.body;
+
+    let {title, description, gifUrl, author, boardId} = body
+
+
+    if (title === undefined ||  description === undefined || gifUrl === undefined || isNaN(boardId)) {
+        next({message: "The new card is missing information", status: 400})
+        return
+    }
+
+    boardId = parseInt(boardId)
+
+    // Check that the board exists
+    const exists = (await prisma.board.findUnique({where: {id: boardId}})) !== null
+    if (!exists) {
+        next({message: "The board where you are posting this card does not exist", status: 400})
+        return
+    }
+
+    const added = await prisma.card.create({
+        data: {
+            title,
+            description,
+            gifUrl,
+            author,
+            boardId
+        }
+    })
+
+    res.json(added);
+})
+
+
 // [CATCH-ALL]
 server.use((req, res, next) => {
     next({ status: 404, message: "Not found" });
