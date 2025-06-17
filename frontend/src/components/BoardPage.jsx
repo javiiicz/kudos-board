@@ -9,7 +9,7 @@ const BoardPage = () => {
     return (
         <>
             <BoardHeader/>
-            <main className="home-main">
+            <main className="board-main">
                 <BoardDetails id={id} />
             </main>
         </>

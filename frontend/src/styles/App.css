@@ -9,11 +9,3 @@
     color: #463f3a;
 }
 
-main {
-    background: white;
-    background: radial-gradient(
-        circle,
-        white 0%,
-        rgba(250, 250, 235, 1) 95%
-    );
-}
