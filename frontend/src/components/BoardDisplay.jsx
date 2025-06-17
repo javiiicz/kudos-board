@@ -6,7 +6,7 @@ const BoardDisplay = ({boards}) => {
     return (
         <div className="board-container">
             {boards.length ? (
-                boards.map((board) => <Board key={board.id} board={board} />)
+                boards.map((board) => <Board key={board.id} board={board}/>)
             ) : (
                 <WelcomeBoard />
             )}

@@ -42,10 +42,6 @@ function App() {
         setCards(fetchedCards);
     };
 
-    const handleBoardClick = (id) => {
-        navigate(`/boards/${id}`);
-    };
-
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -58,7 +54,6 @@ function App() {
                     element={
                         <HomePage
                             boards={boards}
-                            handleBoardClick={handleBoardClick}
                         />
                     }
                 />
