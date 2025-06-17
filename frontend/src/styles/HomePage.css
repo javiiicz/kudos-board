@@ -5,4 +5,6 @@
         white 0%,
         rgba(250, 250, 235, 1) 95%
     );
+    overflow-y: scroll;
 }
+

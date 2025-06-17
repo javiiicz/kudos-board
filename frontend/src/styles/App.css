@@ -9,3 +9,11 @@
     color: #463f3a;
 }
 
+@media (max-width: 800px) {
+    #root {
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr 50px;
+        grid-template-areas: "." "." "footer";
+        height: 100vh;
+    }
+}
