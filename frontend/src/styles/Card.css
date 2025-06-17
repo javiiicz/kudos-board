@@ -17,11 +17,11 @@
 .kudos-card {
     display: flex;
     flex-direction: column;
-    max-width: 250px;
+    max-width: 300px;
     aspect-ratio: 1 / 1;
     height: 100%;
     padding: 10px;
-    overflow: hidden;
+    
 
     box-shadow:  0px 5px 5px rgb(0, 0, 0, 0.5)
 }
@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .kudos-card-image {
@@ -43,4 +44,41 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+}
+
+.upvotes {
+    text-align: right;
+    font-weight: 600;
+}
+
+
+.card-button-container {
+    position: absolute;
+    transform: translateX(240px) translateY(-20px);
+}
+
+.card-button {
+    border-radius: 50%;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.heart {
+    border-color: #FF392B;
+}
+
+.heart:hover {
+    background-color: #ffb7b2;
+}
+
+.card-button:active {
+    transform: scale(0.9);
+}
+
+.trash {
+    border-color: #5A6670;
+}
+
+.trash:hover {
+    background-color: #bbc3c9;
 }

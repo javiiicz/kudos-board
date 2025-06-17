@@ -6,20 +6,27 @@ const Card = ({ card }) => {
     let cardClass = "kudos-card " + color;
 
     return (
-        <div className={cardClass}>
-            <div className="card-content">
-                <h3>{card ? card.title : "Placeholder Title"}</h3>
-                <div className="image-container">
-                    <img
-                        src={card ? card.image : "/snoopy.gif"}
-                        alt="Welcome board image"
-                        className="kudos-card-image"
-                    ></img>
+        <>
+            <div className={cardClass}>
+                <div className="card-content">
+                    <h3>{card ? card.title : "Placeholder Title"}</h3>
+                    <div className="image-container">
+                        <img
+                            src={card ? card.image : "/snoopy.gif"}
+                            alt="Welcome board image"
+                            className="kudos-card-image"
+                        ></img>
+                    </div>
+                    <h4>{card ? card.author : "No Author"}</h4>
+                    <p>Congratulations!</p>
+                    <p className="upvotes">300 Upvotes</p>
                 </div>
-                <h4>{card ? card.author : "No Author"}</h4>
-                <p>Congratulations!</p>
+                <div className="card-button-container">
+                    <button className="card-button heart">❤️</button>
+                    <button className="card-button trash">🗑️</button>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
