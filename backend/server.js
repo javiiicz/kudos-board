@@ -1,11 +1,25 @@
 const express = require("express");
-const server = express();
+const cors = require("cors");
+const { PrismaClient } = require('./generated/prisma')
+const prisma = new PrismaClient()
 
+
+const server = express();
+server.use(cors())
 server.use(express.json());
 
-server.get("/", (req, res) => {
-    res.send("Hello from Express!");
-});
+// [GET] all boards
+server.get("/boards", async (req, res) => {
+    
+    let boards = await prisma.board.findMany()
+
+    if (!boards.length) {
+        next({message: "No boards were found", status: 404})
+        return
+    }
+
+    res.json(boards)
+})
 
 // [CATCH-ALL]
 server.use((req, res, next) => {
