@@ -1,13 +1,12 @@
 import "../styles/HomeHeader.css";
-import Search from "./Search";
-import Filters from "./Filters";
-import CreateButton from "./CreateButton";
 import Title from "./Title";
+import AddCardButton from "./AddCardButton"
 
 const BoardHeader = () => {
     return (
         <header>
             <Title/>
+            <AddCardButton />
         </header>
     );
 };
