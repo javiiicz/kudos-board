@@ -21,11 +21,3 @@ header {
     z-index: 1;
 }
 
-h1 {
-    background-color: #e9edc9;
-    border-style: dotted;
-    border-width: 5px;
-    border-radius: 30px;
-    padding: 20px;
-    font-weight: 800;
-}
