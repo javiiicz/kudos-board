@@ -120,6 +120,33 @@ server.post("/cards", async (req, res, next) => {
 })
 
 
+// [DELETE] a card
+server.delete("/cards/:id", async (req, res, next) => {
+    let id = req.params.id
+
+    // make sure id is Integer
+    if (isNaN(id)) {
+        next({message: "ID of the card has to be an integer", status: 400})
+        return
+    }
+
+    id = parseInt(id)
+
+    // check if card exists
+    const exists = (await prisma.card.findUnique({where: {id: id}})) !== null
+    if (!exists) {
+        next({message: "The card you are deleting does not exist", status: 400})
+        return
+    }
+
+    const deleted = await prisma.card.delete({
+        where: {id: id}
+    })
+
+    res.json(deleted)
+});
+
+
 // [CATCH-ALL]
 server.use((req, res, next) => {
     next({ status: 404, message: "Not found" });
