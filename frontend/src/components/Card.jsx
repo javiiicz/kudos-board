@@ -8,16 +8,16 @@ const Card = ({ card }) => {
         <>
             <div className={cardClass}>
                 <div className="card-content">
-                    <h3>{card ? card.title : "Placeholder Title"}</h3>
+                    <h3>{card.title}</h3>
                     <div className="image-container">
                         <img
-                            src={card ? card.gifUrl : "/snoopy.gif"}
-                            alt="Welcome board image"
+                            src={card.gifUrl}
+                            alt="Kudos Card Gif"
                             className="kudos-card-image"
                         ></img>
                     </div>
-                    <h4>{card ? card.author : "No Author"}</h4>
-                    <p>Congratulations!</p>
+                    <h4>{card.author ? card.author : "No Author"}</h4>
+                    <p>{card.description}</p>
                     <p className="upvotes">{card.upvotes} {card.upvotes === 1 ? "Upvote" : "Upvotes"}</p>
                 </div>
                 <div className="card-button-container">
