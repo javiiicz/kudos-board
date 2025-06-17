@@ -18,7 +18,7 @@ const Card = ({ card }) => {
                     </div>
                     <h4>{card ? card.author : "No Author"}</h4>
                     <p>Congratulations!</p>
-                    <p className="upvotes">300 Upvotes</p>
+                    <p className="upvotes">{card.upvotes} {card.upvotes === 1 ? "Upvote" : "Upvotes"}</p>
                 </div>
                 <div className="card-button-container">
                     <button className="card-button heart">❤️</button>
