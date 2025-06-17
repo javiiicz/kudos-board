@@ -21,6 +21,28 @@ server.get("/boards", async (req, res) => {
     res.json(boards)
 })
 
+
+// [GET] board by id
+server.get("/boards/:id", async (req, res, next) => {
+    
+    let id = req.params.id
+
+    // make sure id is Integer
+    if (isNaN(id)) {
+        next({message: "ID of the board has to be an integer", status: 400})
+        return
+    }
+
+    let board = await prisma.board.findUnique({where: {id: parseInt(id)}});
+
+    if (!board) {
+        next({message: "The pet with the specified ID does not exist", status: 404})
+    } else {
+        res.json(board);
+    }
+})
+
+
 // [CATCH-ALL]
 server.use((req, res, next) => {
     next({ status: 404, message: "Not found" });
