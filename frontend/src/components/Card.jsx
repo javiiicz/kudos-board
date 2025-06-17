@@ -4,7 +4,6 @@ const Card = ({ card }) => {
     let colors = ["yellow", "blue", "pink", "green"];
     let color = colors[Math.floor(Math.random() * 4)];
     let cardClass = "kudos-card " + color;
-
     return (
         <>
             <div className={cardClass}>
@@ -12,7 +11,7 @@ const Card = ({ card }) => {
                     <h3>{card ? card.title : "Placeholder Title"}</h3>
                     <div className="image-container">
                         <img
-                            src={card ? card.image : "/snoopy.gif"}
+                            src={card ? card.gifUrl : "/snoopy.gif"}
                             alt="Welcome board image"
                             className="kudos-card-image"
                         ></img>
