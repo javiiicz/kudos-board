@@ -2,6 +2,8 @@ import "../styles/Board.css"
 import { useNavigate } from "react-router-dom";
 
 const Board = ({board}) => {
+    const navigate = useNavigate()
+
     const handleBoardClick = () => {
         navigate(`/boards/${board.id}`);
     };
