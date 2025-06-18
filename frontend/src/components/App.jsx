@@ -75,6 +75,30 @@ function App() {
         setCurrentBoard(fetchedBoard);
     };
 
+    const deleteCard = async (cardID) => {
+        try {
+            const response = await fetch(`http://localhost:3000/cards/${cardID}`, {method: 'DELETE'});
+            if (!response.ok) {
+                if (response.status === 400) {
+                    throw new Error(
+                        "400: The server could not understand the request."
+                    );
+                }
+                if (response.status === 404) {
+                    throw new Error(
+                        "404: Not Found."
+                    );
+                }
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            fetchCardsForBoard(data.boardId)
+        } catch (error) {
+            console.error("Fetch error:", error);
+            throw error;
+        }
+    } 
+
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -91,6 +115,7 @@ function App() {
                             fetchCardsForBoard={fetchCardsForBoard}
                             currentBoard={currentBoard}
                             fetchBoardByID={fetchBoardByID}
+                            deleteCard={deleteCard}
                         />
                     }
                 />

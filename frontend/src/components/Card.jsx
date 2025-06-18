@@ -1,6 +1,6 @@
 import "../styles/Card.css";
 
-const Card = ({ card }) => {
+const Card = ({ card, deleteCard }) => {
     let colors = ["yellow", "blue", "pink", "green"];
     let color = colors[Math.floor(Math.random() * 4)];
     let cardClass = "kudos-card " + color;
@@ -22,7 +22,7 @@ const Card = ({ card }) => {
                 </div>
                 <div className="card-button-container">
                     <button className="card-button heart">❤️</button>
-                    <button className="card-button trash">🗑️</button>
+                    <button className="card-button trash" onClick={() => {deleteCard(card.id)}}>🗑️</button>
                 </div>
             </div>
         </>

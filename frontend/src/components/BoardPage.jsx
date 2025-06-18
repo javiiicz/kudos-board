@@ -4,7 +4,7 @@ import BoardDetails from "./BoardDetails";
 import BoardHeader from "./BoardHeader"
 import { useEffect } from "react";
 
-const BoardPage = ({cards, fetchCardsForBoard, currentBoard, fetchBoardByID}) => {
+const BoardPage = ({cards, fetchCardsForBoard, currentBoard, fetchBoardByID, deleteCard}) => {
     const { id } = useParams();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const BoardPage = ({cards, fetchCardsForBoard, currentBoard, fetchBoardByID}) =>
         <>
             <BoardHeader/>
             <main className="board-main">
-                <BoardDetails id={id} cards={cards} currentBoard={currentBoard}/>
+                <BoardDetails id={id} cards={cards} currentBoard={currentBoard} deleteCard={deleteCard}/>
             </main>
         </>
     );

@@ -1,7 +1,13 @@
 import Card from "./Card";
 import "../styles/BoardDetails.css"
 
-const BoardDetails = ({id, cards, currentBoard}) => {
+const BoardDetails = ({id, cards, currentBoard, deleteCard}) => {
+    if (!currentBoard) {
+        return (
+            <p>Loading</p>
+        )
+    }
+
     return (
         <>
             <h2>{currentBoard.title}</h2>
@@ -9,7 +15,9 @@ const BoardDetails = ({id, cards, currentBoard}) => {
             <p>{currentBoard.description}</p>
             <p>{currentBoard.category}</p>
             <div className="card-container">
-                {cards.map(card => <Card key={card.id} card={card}/>)}
+                {cards.length ? (cards.map(card => <Card key={card.id} card={card} deleteCard={deleteCard}/>)) : (
+                    <p>No cards... Create some!</p>
+                )}
             </div>
         </>
     )
