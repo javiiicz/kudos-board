@@ -135,7 +135,7 @@ server.delete("/cards/:id", async (req, res, next) => {
     // check if card exists
     const exists = (await prisma.card.findUnique({where: {id: id}})) !== null
     if (!exists) {
-        next({message: "The card you are deleting does not exist", status: 400})
+        next({message: "The card you are deleting does not exist", status: 404})
         return
     }
 
