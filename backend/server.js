@@ -9,7 +9,16 @@ server.use(express.json());
 
 // [GET] all boards
 server.get("/boards", async (req, res) => {
-    let boards = await prisma.board.findMany();
+    let queries = req.query;
+    let boards = [];
+
+    if (queries.search) {
+        boards = await prisma.board.findMany({
+            where: { title: { contains: queries.search, mode: "insensitive" } },
+        });
+    } else {
+        boards = await prisma.board.findMany();
+    }
 
     if (!boards.length) {
         next({ message: "No boards were found", status: 404 });
@@ -127,7 +136,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
             gifUrl,
             author,
             boardId,
-            color
+            color,
         },
     });
 
