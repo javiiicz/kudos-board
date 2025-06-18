@@ -110,7 +110,7 @@ function App() {
 
     const deleteCard = async (cardID) => {
         try {
-            await fetchRequest(
+            let data = await fetchRequest(
                 `http://localhost:3000/cards/${cardID}`,
                 "DELETE"
             );
@@ -150,6 +150,21 @@ function App() {
         setShowModal(false);
     };
 
+    const toggleCardUpvote = async (cardID) => {
+        try {
+            let data = await fetchRequest(
+                `http://localhost:3000/cards/${cardID}`,
+                "PATCH"
+            );
+            fetchCardsForBoard(data.boardId);
+        } catch (error) {
+            console.error("Fetch error:", error);
+            setError(error);
+            navigate("/error");
+            throw error;
+        }
+    }
+
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -180,6 +195,7 @@ function App() {
                             currentBoard={currentBoard}
                             fetchBoardByID={fetchBoardByID}
                             deleteCard={deleteCard}
+                            toggleCardUpvote={toggleCardUpvote}
                         />
                     }
                 />

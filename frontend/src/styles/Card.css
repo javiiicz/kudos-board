@@ -69,6 +69,10 @@
     background-color: #ffb7b2;
 }
 
+.active {
+    background-color: #ffb7b2;
+}
+
 .card-button:active {
     transform: scale(0.9);
 }

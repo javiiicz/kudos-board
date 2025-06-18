@@ -1,22 +1,35 @@
 import "../styles/BoardPage.css";
 import { useParams } from "react-router-dom";
 import BoardDetails from "./BoardDetails";
-import BoardHeader from "./BoardHeader"
+import BoardHeader from "./BoardHeader";
 import { useEffect } from "react";
 
-const BoardPage = ({cards, fetchCardsForBoard, currentBoard, fetchBoardByID, deleteCard}) => {
+const BoardPage = ({
+    cards,
+    fetchCardsForBoard,
+    currentBoard,
+    fetchBoardByID,
+    deleteCard,
+    toggleCardUpvote
+}) => {
     const { id } = useParams();
 
     useEffect(() => {
-        fetchCardsForBoard(id)
-        fetchBoardByID(id)
-    }, [])
+        fetchCardsForBoard(id);
+        fetchBoardByID(id);
+    }, []);
 
     return (
         <>
-            <BoardHeader/>
+            <BoardHeader />
             <main className="board-main">
-                <BoardDetails id={id} cards={cards} currentBoard={currentBoard} deleteCard={deleteCard}/>
+                <BoardDetails
+                    id={id}
+                    cards={cards}
+                    currentBoard={currentBoard}
+                    deleteCard={deleteCard}
+                    toggleCardUpvote={toggleCardUpvote}
+                />
             </main>
         </>
     );
