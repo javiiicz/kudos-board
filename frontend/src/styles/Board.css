@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: start;
 
 
     padding: 10px;
@@ -20,4 +21,31 @@
 .board:hover {
     transform: scale(1.05) rotate(-5deg);
     box-shadow: 0 0 10px rgb(0,0,0,0.3);
+}
+
+.category {
+    display: block;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    width: max-contentx;
+}
+
+.author{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.board-desc{
+    font-size: 15px;
+    max-height: 6em;
+    overflow: scroll;
+}
+
+.board-image {
+    max-height: 150px;
+    overflow: hidden;
+    align-self: center;
 }
