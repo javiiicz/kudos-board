@@ -63,10 +63,10 @@ server.get("/cards/:boardID", async(req,res,next) => {
 server.post("/boards", async (req, res, next) => {
     let body = req.body;
 
-    let {title, imageUrl, description, category, author} = body
+    let {title, imageUrl, category, author} = body
 
 
-    if (title === undefined ||  imageUrl === undefined || description === undefined || category === undefined) {
+    if (title === undefined ||  imageUrl === undefined || category === undefined) {
         next({message: "The new board is missing information", status: 400})
         return
     }
@@ -75,7 +75,6 @@ server.post("/boards", async (req, res, next) => {
         data: {
             title,
             imageUrl,
-            description,
             category,
             author
         }
