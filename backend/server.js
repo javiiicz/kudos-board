@@ -219,7 +219,7 @@ server.patch("/cards/:id", async (req, res, next) => {
 
     let updateUser = null;
     if (card.liked) {
-        updateUser = await prisma.user.update({
+        updateUser = await prisma.card.update({
             where: {
                 id: id,
             },
@@ -229,7 +229,7 @@ server.patch("/cards/:id", async (req, res, next) => {
             },
         });
     } else {
-        updateUser = await prisma.user.update({
+        updateUser = await prisma.card.update({
             where: {
                 id: id,
             },
