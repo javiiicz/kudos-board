@@ -1,7 +1,7 @@
 import "../styles/Board.css";
 import { useNavigate } from "react-router-dom";
 
-const Board = ({ board }) => {
+const Board = ({ board, deleteBoard }) => {
     const navigate = useNavigate();
 
     const handleBoardClick = () => {
@@ -22,8 +22,9 @@ const Board = ({ board }) => {
             <div className="board-button-container">
                 <button
                     className="card-button trash"
-                    onClick={() => {
-                        deleteCard(card.id);
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        deleteBoard(board.id);
                     }}
                 >
                     🗑️

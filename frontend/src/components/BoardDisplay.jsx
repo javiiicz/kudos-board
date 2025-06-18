@@ -10,6 +10,7 @@ const BoardDisplay = ({
     handleAddSubmit,
     addFormData,
     setAddFormData,
+    deleteBoard,
 }) => {
     if (showModal) {
         return (
@@ -25,7 +26,13 @@ const BoardDisplay = ({
     return (
         <div className="board-container">
             {boards.length ? (
-                boards.map((board) => <Board key={board.id} board={board} />)
+                boards.map((board) => (
+                    <Board
+                        key={board.id}
+                        board={board}
+                        deleteBoard={deleteBoard}
+                    />
+                ))
             ) : (
                 <WelcomeBoard />
             )}

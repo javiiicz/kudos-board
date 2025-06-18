@@ -10,6 +10,7 @@ const HomePage = ({
     setShowModal,
     addFormData,
     setAddFormData,
+    deleteBoard,
 }) => {
     return (
         <>
@@ -22,6 +23,7 @@ const HomePage = ({
                     handleAddSubmit={handleAddSubmit}
                     addFormData={addFormData}
                     setAddFormData={setAddFormData}
+                    deleteBoard={deleteBoard}
                 />
             </main>
         </>

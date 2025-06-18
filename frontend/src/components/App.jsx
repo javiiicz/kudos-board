@@ -93,6 +93,21 @@ function App() {
         setCurrentBoard(fetchedBoard);
     };
 
+    const deleteBoard = async (boardID) => {
+        try {
+            await fetchRequest(
+                `http://localhost:3000/boards/${boardID}`,
+                "DELETE"
+            );
+            fetchBoards();
+        } catch (error) {
+            console.error("Fetch error:", error);
+            setError(error);
+            navigate("/error");
+            throw error;
+        }
+    };
+
     const deleteCard = async (cardID) => {
         try {
             await fetchRequest(
@@ -152,6 +167,7 @@ function App() {
                             setShowModal={setShowModal}
                             addFormData={addFormData}
                             setAddFormData={setAddFormData}
+                            deleteBoard={deleteBoard}
                         />
                     }
                 />
