@@ -33,5 +33,6 @@ model Card {
   upvotes     Int      @default(0)
   board       Board    @relation("BoardCards", fields: [boardId], references: [id])
   boardId     Int
+  color       String?   @default("yellow")
   liked       Boolean  @default(false)
 }

@@ -1,9 +1,8 @@
+import { Heart, Trash } from "lucide-react";
 import "../styles/Card.css";
 
 const Card = ({ card, deleteCard, toggleCardUpvote }) => {
-    let colors = ["yellow", "blue", "pink", "green"];
-    let color = colors[Math.floor(Math.random() * 4)];
-    let cardClass = "kudos-card " + color;
+    let cardClass = "kudos-card " + card.color;
 
     let likeClass = "card-button heart " + (card.liked ? "active" : "")
     return (
@@ -33,7 +32,7 @@ const Card = ({ card, deleteCard, toggleCardUpvote }) => {
                             toggleCardUpvote(card.id);
                         }}
                     >
-                        ❤️
+                        {card.liked ? <Heart size={20} fill={'red'} color={'red'}/> : <Heart size={20}/>}
                     </button>
                     <button
                         className="card-button trash"
@@ -42,7 +41,7 @@ const Card = ({ card, deleteCard, toggleCardUpvote }) => {
                             deleteCard(card.id);
                         }}
                     >
-                        🗑️
+                        <Trash size={20}/>
                     </button>
                 </div>
             </div>

@@ -95,7 +95,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
     let body = req.body;
 
     let boardId = req.params.boardID;
-    let { title, description, gifUrl, author } = body;
+    let { title, description, gifUrl, author, color } = body;
 
     if (
         title === undefined ||
@@ -127,6 +127,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
             gifUrl,
             author,
             boardId,
+            color
         },
     });
 
