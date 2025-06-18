@@ -20,6 +20,7 @@ function App() {
         category: "",
         author: "",
     });
+    const [searchField, setSearchField] = useState("");
 
     const fetchRequest = async (url, method, body = null) => {
         try {
@@ -50,13 +51,21 @@ function App() {
         }
     };
 
-    const fetchBoards = async () => {
+    const fetchBoards = async (search = null, filter = null) => {
         let fetchedBoards = [];
+        let url = `http://localhost:3000/boards`;
+
+        if (search && filter) {
+            url = `http://localhost:3000/boards?search=${search}&filter=${filter}`;
+        } else if (search || filter) {
+            url =
+                `http://localhost:3000/boards?` +
+                (search ? `search=${search}` : "") +
+                (filter ? `filter=${filter}` : "");
+        }
+
         try {
-            fetchedBoards = await fetchRequest(
-                "http://localhost:3000/boards",
-                "GET"
-            );
+            fetchedBoards = await fetchRequest(url, "GET");
         } catch (e) {
             console.log("No boards found...", e);
         }
@@ -163,7 +172,13 @@ function App() {
             navigate("/error");
             throw error;
         }
-    }
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        fetchBoards(searchField);
+        setSearchField("");
+    };
 
     useEffect(() => {
         fetchBoards();
@@ -183,6 +198,9 @@ function App() {
                             addFormData={addFormData}
                             setAddFormData={setAddFormData}
                             deleteBoard={deleteBoard}
+                            searchField={searchField}
+                            setSearchField={setSearchField}
+                            handleSearchSubmit={handleSearchSubmit}
                         />
                     }
                 />

@@ -1,11 +1,15 @@
 import "../styles/Search.css";
 
-const Search = () => {
+const Search = ({searchField, setSearchField, handleSearchSubmit}) => {
+    const handleInputChange = (e) => {
+        setSearchField(e.target.value)    
+    }
+
     return (
-        <form className="search-container">
-            <input type="text" className="search-input"></input>
+        <form className="search-container" onSubmit={handleSearchSubmit}>
+            <input type="text" className="search-input" value={searchField} onChange={handleInputChange}></input>
             <div className="buttons">
-                <button>Submit</button>
+                <button type="submit">Submit</button>
                 <button>Clear</button>
             </div>
         </form>

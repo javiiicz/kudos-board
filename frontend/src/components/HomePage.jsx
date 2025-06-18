@@ -11,10 +11,18 @@ const HomePage = ({
     addFormData,
     setAddFormData,
     deleteBoard,
+    searchField,
+    setSearchField,
+    handleSearchSubmit,
 }) => {
     return (
         <>
-            <HomeHeader setShowModal={setShowModal} />
+            <HomeHeader
+                setShowModal={setShowModal}
+                searchField={searchField}
+                setSearchField={setSearchField}
+                handleSearchSubmit={handleSearchSubmit}
+            />
             <main className="home-main">
                 <BoardDisplay
                     boards={boards}
