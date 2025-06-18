@@ -67,7 +67,7 @@ function App() {
         let fetchedCards = [];
         try {
             fetchedCards = await fetchRequest(
-                `http://localhost:3000/cards/${boardID}`,
+                `http://localhost:3000/boards/${boardID}/cards`,
                 "GET"
             );
         } catch (e) {

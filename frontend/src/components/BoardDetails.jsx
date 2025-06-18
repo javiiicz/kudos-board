@@ -7,7 +7,7 @@ const BoardDetails = ({id, cards, currentBoard, deleteCard}) => {
             <p>Loading</p>
         )
     }
-
+    
     return (
         <>
             <h2>{currentBoard.title}</h2>

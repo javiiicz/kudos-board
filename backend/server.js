@@ -44,7 +44,7 @@ server.get("/boards/:id", async (req, res, next) => {
 
 
 // [GET] cards for a specific board
-server.get("/cards/:boardID", async(req,res,next) => {
+server.get("/boards/:boardID/cards", async(req,res,next) => {
     let id = req.params.boardID
 
     // make sure id is Integer
