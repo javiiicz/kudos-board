@@ -21,6 +21,7 @@ function App() {
         author: "",
     });
     const [searchField, setSearchField] = useState("");
+    const [filter, setFilter] = useState("all")
 
     const fetchRequest = async (url, method, body = null) => {
         try {
@@ -189,6 +190,10 @@ function App() {
         fetchBoards();
     }, []);
 
+    useEffect(() => {
+        fetchBoards(null, filter)
+    }, [filter])
+
     return (
         <>
             <Routes>
@@ -207,6 +212,8 @@ function App() {
                             setSearchField={setSearchField}
                             handleSearchSubmit={handleSearchSubmit}
                             clearSearch={clearSearch}
+                            filter={filter}
+                            setFilter={setFilter}
                         />
                     }
                 />
