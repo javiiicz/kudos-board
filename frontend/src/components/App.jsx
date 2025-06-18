@@ -14,10 +14,16 @@ function App() {
     const [error, setError] = useState(null);
     const [currentBoard, setCurrentBoard] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [addFormData, setAddFormData] = useState({
+        title: "",
+        author: "",
+        image: "",
+        category: "",
+    });
 
-    const fetchGET = async (url) => {
+    const fetchRequest = async (url, method) => {
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, { method: method });
             if (!response.ok) {
                 if (response.status === 400) {
                     throw new Error(
@@ -40,7 +46,10 @@ function App() {
     const fetchBoards = async () => {
         let fetchedBoards = [];
         try {
-            fetchedBoards = await fetchGET("http://localhost:3000/boards");
+            fetchedBoards = await fetchRequest(
+                "http://localhost:3000/boards",
+                "GET"
+            );
         } catch (e) {
             console.log("No boards found...", e);
         }
@@ -50,8 +59,9 @@ function App() {
     const fetchCardsForBoard = async (boardID) => {
         let fetchedCards = [];
         try {
-            fetchedCards = await fetchGET(
-                `http://localhost:3000/cards/${boardID}`
+            fetchedCards = await fetchRequest(
+                `http://localhost:3000/cards/${boardID}`,
+                "GET"
             );
         } catch (e) {
             console.error("Error while fetching cards for a board", e);
@@ -62,8 +72,9 @@ function App() {
     const fetchBoardByID = async (boardID) => {
         let fetchedBoard = null;
         try {
-            fetchedBoard = await fetchGET(
-                `http://localhost:3000/boards/${boardID}`
+            fetchedBoard = await fetchRequest(
+                `http://localhost:3000/boards/${boardID}`,
+                "GET"
             );
         } catch (e) {
             if (e.message.includes("400") || e.message.includes("404")) {
@@ -78,22 +89,10 @@ function App() {
 
     const deleteCard = async (cardID) => {
         try {
-            const response = await fetch(
+            await fetchRequest(
                 `http://localhost:3000/cards/${cardID}`,
-                { method: "DELETE" }
+                "DELETE"
             );
-            if (!response.ok) {
-                if (response.status === 400) {
-                    throw new Error(
-                        "400: The server could not understand the request."
-                    );
-                }
-                if (response.status === 404) {
-                    throw new Error("404: Not Found.");
-                }
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
             fetchCardsForBoard(data.boardId);
         } catch (error) {
             console.error("Fetch error:", error);
@@ -101,9 +100,16 @@ function App() {
         }
     };
 
-    const handleAddSubmit = (e) => {
+    const createBoard = async (board) => {
+        fetchBoards();
+    };
+
+    const handleAddSubmit = async (e) => {
         e.preventDefault();
-        setShowModal(false)
+
+        let board = {};
+
+        setShowModal(false);
     };
 
     useEffect(() => {
@@ -121,6 +127,8 @@ function App() {
                             handleAddSubmit={handleAddSubmit}
                             showModal={showModal}
                             setShowModal={setShowModal}
+                            addFormData={addFormData}
+                            setAddFormData={setAddFormData}
                         />
                     }
                 />
