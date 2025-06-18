@@ -33,4 +33,5 @@ model Card {
   upvotes     Int      @default(0)
   board       Board    @relation("BoardCards", fields: [boardId], references: [id])
   boardId     Int
+  liked       Boolean  @default(false)
 }
