@@ -81,6 +81,11 @@ server.get("/boards/:boardID/cards", async (req, res, next) => {
         where: { boardId: parseInt(id) },
     });
 
+    cards.sort((a,b) => {
+        let res = (new Date(a.created_at)) - (new Date(b.created_at));
+        return res
+        })
+
     res.json(cards);
 });
 
