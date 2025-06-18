@@ -55,8 +55,8 @@ const NewBoardSection = ({
                         <input
                             type="text"
                             id="image"
-                            name="image"
-                            value={addFormData.image}
+                            name="imageUrl"
+                            value={addFormData.imageUrl}
                             onChange={handleInputChange}
                             required
                         ></input>

@@ -16,14 +16,21 @@ function App() {
     const [showModal, setShowModal] = useState(false);
     const [addFormData, setAddFormData] = useState({
         title: "",
-        author: "",
-        image: "",
+        imageUrl: "",
         category: "",
+        author: "",
     });
 
-    const fetchRequest = async (url, method) => {
+    const fetchRequest = async (url, method, body = null) => {
         try {
-            const response = await fetch(url, { method: method });
+            const request = new Request(url, {
+                method: method,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: body,
+            });
+            const response = await fetch(request);
             if (!response.ok) {
                 if (response.status === 400) {
                     throw new Error(
@@ -65,6 +72,8 @@ function App() {
             );
         } catch (e) {
             console.error("Error while fetching cards for a board", e);
+            setError(e);
+            navigate("/error");
         }
         setCards(fetchedCards);
     };
@@ -77,12 +86,9 @@ function App() {
                 "GET"
             );
         } catch (e) {
-            if (e.message.includes("400") || e.message.includes("404")) {
-                setError(e);
-                navigate("/error");
-            } else {
-                console.error("Error while fetching board:", e);
-            }
+            console.error("Error while fetching board:", e);
+            setError(e);
+            navigate("/error");
         }
         setCurrentBoard(fetchedBoard);
     };
@@ -96,19 +102,36 @@ function App() {
             fetchCardsForBoard(data.boardId);
         } catch (error) {
             console.error("Fetch error:", error);
+            setError(error);
+            navigate("/error");
             throw error;
         }
     };
 
     const createBoard = async (board) => {
+        try {
+            await fetchRequest(
+                "http://localhost:3000/boards",
+                "POST",
+                JSON.stringify(board)
+            );
+        } catch (error) {
+            console.error("Error while fetching board:", error);
+            setError(error);
+            navigate("/error");
+        }
         fetchBoards();
     };
 
     const handleAddSubmit = async (e) => {
         e.preventDefault();
-
-        let board = {};
-
+        await createBoard(addFormData);
+        setAddFormData({
+            title: "",
+            imageUrl: "",
+            category: "",
+            author: "",
+        });
         setShowModal(false);
     };
 
