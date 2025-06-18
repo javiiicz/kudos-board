@@ -25,17 +25,19 @@ server.get("/boards", async (req, res, next) => {
             case "all":
                 break;
             case "recent":
-                boards.sort((a,b) => {a.created_at - b.created_at});
+                boards.sort((a, b) => {
+                    a.created_at - b.created_at;
+                });
                 boards = boards.slice(0, 6);
                 break;
             case "celebration":
-                boards = boards.filter(x => x.category === "Celebration");
+                boards = boards.filter((x) => x.category === "Celebration");
                 break;
             case "ty":
-                boards = boards.filter(x => x.category === "Thank You");
+                boards = boards.filter((x) => x.category === "Thank You");
                 break;
             case "inspiration":
-                boards = boards.filter(x => x.category === "Inspiration");
+                boards = boards.filter((x) => x.category === "Inspiration");
                 break;
         }
     }
@@ -78,6 +80,11 @@ server.get("/boards/:boardID/cards", async (req, res, next) => {
     let cards = await prisma.card.findMany({
         where: { boardId: parseInt(id) },
     });
+
+    cards.sort((a,b) => {
+        let res = (new Date(a.created_at)) - (new Date(b.created_at));
+        return res
+        })
 
     res.json(cards);
 });
@@ -218,7 +225,7 @@ server.delete("/cards/:id", async (req, res, next) => {
     res.json(deleted);
 });
 
-// [PATCH] a card to like / unlike
+// [PATCH] a card to like
 server.patch("/cards/:id", async (req, res, next) => {
     let id = req.params.id;
 
@@ -243,27 +250,15 @@ server.patch("/cards/:id", async (req, res, next) => {
     }
 
     let updateUser = null;
-    if (card.liked) {
-        updateUser = await prisma.card.update({
-            where: {
-                id: id,
-            },
-            data: {
-                upvotes: card.upvotes - 1,
-                liked: false,
-            },
-        });
-    } else {
-        updateUser = await prisma.card.update({
-            where: {
-                id: id,
-            },
-            data: {
-                upvotes: card.upvotes + 1,
-                liked: true,
-            },
-        });
-    }
+
+    updateUser = await prisma.card.update({
+        where: {
+            id: id,
+        },
+        data: {
+            upvotes: card.upvotes + 1,
+        },
+    });
 
     res.json(updateUser);
 });
