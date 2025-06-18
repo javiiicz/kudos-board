@@ -1,3 +1,4 @@
+import { Trash } from "lucide-react";
 import "../styles/Board.css";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +28,7 @@ const Board = ({ board, deleteBoard }) => {
                         deleteBoard(board.id);
                     }}
                 >
-                    🗑️
+                    <Trash/>
                 </button>
             </div>
         </div>
