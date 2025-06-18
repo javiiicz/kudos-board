@@ -18,9 +18,9 @@ model Board {
   id          Int      @id @default(autoincrement())
   title       String
   imageUrl    String
-  description String
   category    String
   author      String?
+  created_at  DateTime @default(now())
   cards       Card[]   @relation("BoardCards")
 }
 
