@@ -8,7 +8,7 @@ server.use(cors());
 server.use(express.json());
 
 // [GET] all boards
-server.get("/boards", async (req, res) => {
+server.get("/boards", async (req, res, next) => {
     let queries = req.query;
     let boards = [];
 

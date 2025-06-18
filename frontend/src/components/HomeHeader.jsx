@@ -4,11 +4,22 @@ import Filters from "./Filters";
 import CreateButton from "./CreateButton";
 import Title from "./Title";
 
-const HomeHeader = ({ setShowModal, searchField, setSearchField, handleSearchSubmit}) => {
+const HomeHeader = ({
+    setShowModal,
+    searchField,
+    setSearchField,
+    handleSearchSubmit,
+    clearSearch
+}) => {
     return (
         <header>
             <Title />
-            <Search searchField={searchField} setSearchField={setSearchField} handleSearchSubmit={handleSearchSubmit}/>
+            <Search
+                searchField={searchField}
+                setSearchField={setSearchField}
+                handleSearchSubmit={handleSearchSubmit}
+                clearSearch={clearSearch}
+            />
             <Filters />
             <CreateButton setShowModal={setShowModal} />
         </header>

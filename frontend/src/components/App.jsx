@@ -180,6 +180,11 @@ function App() {
         setSearchField("");
     };
 
+    const clearSearch = () => {
+        fetchBoards()
+        setSearchField("");
+    }
+
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -201,6 +206,7 @@ function App() {
                             searchField={searchField}
                             setSearchField={setSearchField}
                             handleSearchSubmit={handleSearchSubmit}
+                            clearSearch={clearSearch}
                         />
                     }
                 />
