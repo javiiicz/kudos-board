@@ -1,8 +1,8 @@
 import "../styles/CreateButton.css"
 
-const CreateButton = () => {
+const CreateButton = ({setShowModal}) => {
     return (
-        <button className="create-button">
+        <button className="create-button" onClick={() => {setShowModal(true)}}>
             <p>+ Create a New Board</p>
         </button>
     )

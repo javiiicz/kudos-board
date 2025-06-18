@@ -1,13 +1,16 @@
 import BoardDisplay from "./BoardDisplay";
 import HomeHeader from "./HomeHeader.jsx";
 import "../styles/HomePage.css"
+import { useState } from "react";
 
 const HomePage = ({boards}) => {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <>
-            <HomeHeader />
+            <HomeHeader setShowModal={setShowModal}/>
             <main className="home-main">
-                <BoardDisplay boards={boards}/>
+                <BoardDisplay boards={boards} showModal={showModal} setShowModal={setShowModal}/>
             </main>
         </>
     );

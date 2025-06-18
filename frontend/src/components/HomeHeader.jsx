@@ -4,13 +4,13 @@ import Filters from "./Filters";
 import CreateButton from "./CreateButton";
 import Title from "./Title";
 
-const HomeHeader = () => {
+const HomeHeader = ({setShowModal}) => {
     return (
         <header>
             <Title/>
             <Search />
             <Filters />
-            <CreateButton />
+            <CreateButton setShowModal={setShowModal}/>
         </header>
     );
 };
