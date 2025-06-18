@@ -49,3 +49,8 @@
     overflow: hidden;
     align-self: center;
 }
+
+.board-button-container {
+    position: absolute;
+    transform: translateX(210px) translateY(-20px);
+}
