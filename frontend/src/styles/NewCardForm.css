@@ -1,0 +1,32 @@
+
+.close-button {
+    cursor: pointer;
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.form-container {
+    align-self: center;
+    background-color: white;
+    width: max-content;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: rgb(0,0,0,0.2);
+    padding: 30px;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
