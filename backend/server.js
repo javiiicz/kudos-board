@@ -63,6 +63,11 @@ server.get("/cards/:boardID", async(req,res,next) => {
 server.post("/boards", async (req, res, next) => {
     let body = req.body;
 
+    if (body === undefined) {
+        next({message: "The request has no body", status: 400})
+        return
+    }
+
     let {title, imageUrl, category, author} = body
 
 
@@ -85,6 +90,7 @@ server.post("/boards", async (req, res, next) => {
 
 
 // [POST] new card
+// [TODO] change url to /boards/:boardID/cards
 server.post("/cards", async (req, res, next) => {
     let body = req.body;
 
