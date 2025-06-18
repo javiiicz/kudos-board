@@ -4,7 +4,7 @@ import "../styles/Card.css";
 const Card = ({ card, deleteCard, toggleCardUpvote }) => {
     let cardClass = "kudos-card " + card.color;
 
-    let likeClass = "card-button heart " + (card.liked ? "active" : "")
+    let likeClass = "card-button heart"
     return (
         <>
             <div className={cardClass}>
