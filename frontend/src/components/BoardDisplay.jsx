@@ -3,10 +3,10 @@ import Board from "./Board";
 import NewBoardSection from "./NewBoardSection";
 import WelcomeBoard from "./WelcomeBoard";
 
-const BoardDisplay = ({ boards, showModal, setShowModal }) => {
+const BoardDisplay = ({ boards, showModal, setShowModal, handleAddSubmit }) => {
     if (showModal) {
         return (
-            <NewBoardSection setShowModal={setShowModal}/>
+            <NewBoardSection setShowModal={setShowModal} handleAddSubmit={handleAddSubmit}/>
         );
     }
 

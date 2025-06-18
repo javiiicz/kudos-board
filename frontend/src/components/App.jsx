@@ -101,6 +101,11 @@ function App() {
         }
     } 
 
+    const handleAddSubmit = (e) => {
+        e.preventDefault()
+        console.log("Submitted")
+    }
+
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -108,7 +113,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<HomePage boards={boards} />} />
+                <Route path="/" element={<HomePage boards={boards} handleAddSubmit={handleAddSubmit}/>} />
                 <Route
                     path="/boards/:id"
                     element={
