@@ -34,4 +34,5 @@ model Card {
   board       Board    @relation("BoardCards", fields: [boardId], references: [id])
   boardId     Int
   color       String?   @default("yellow")
+  created_at  DateTime @default(now())
 }
