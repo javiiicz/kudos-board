@@ -11,6 +11,7 @@ function App() {
 
     const [boards, setBoards] = useState([]);
     const [cards, setCards] = useState([]);
+    const [error, setError] = useState(null);
     const [currentBoard, setCurrentBoard] = useState(null);
 
     const fetchGET = async (url) => {
@@ -67,7 +68,8 @@ function App() {
             );
         } catch (e) {
             if (e.message.includes("400") || e.message.includes("404")) {
-                navigate("/404")
+                setError(e)
+                navigate("/error")
             } else {
                 console.error("Error while fetching board:", e);
             }
@@ -119,7 +121,7 @@ function App() {
                         />
                     }
                 />
-                <Route path="/*" element={<ErrorPage/>}/>
+                <Route path="/*" element={<ErrorPage error={error}/>}/>
             </Routes>
             <Footer />
         </>
