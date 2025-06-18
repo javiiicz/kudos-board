@@ -20,9 +20,24 @@ server.get("/boards", async (req, res, next) => {
         boards = await prisma.board.findMany();
     }
 
-    if (!boards.length) {
-        next({ message: "No boards were found", status: 404 });
-        return;
+    if (queries.filter) {
+        switch (queries.filter) {
+            case "all":
+                break;
+            case "recent":
+                boards.sort((a,b) => {a.created_at - b.created_at});
+                boards = boards.slice(0, 6);
+                break;
+            case "celebration":
+                boards = boards.filter(x => x.category === "Celebration");
+                break;
+            case "ty":
+                boards = boards.filter(x => x.category === "Thank You");
+                break;
+            case "inspiration":
+                boards = boards.filter(x => x.category === "Inspiration");
+                break;
+        }
     }
 
     res.json(boards);

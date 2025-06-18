@@ -9,7 +9,9 @@ const HomeHeader = ({
     searchField,
     setSearchField,
     handleSearchSubmit,
-    clearSearch
+    clearSearch,
+    filter,
+    setFilter,
 }) => {
     return (
         <header>
@@ -20,7 +22,7 @@ const HomeHeader = ({
                 handleSearchSubmit={handleSearchSubmit}
                 clearSearch={clearSearch}
             />
-            <Filters />
+            <Filters filter={filter} setFilter={setFilter} />
             <CreateButton setShowModal={setShowModal} />
         </header>
     );

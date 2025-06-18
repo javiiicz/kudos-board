@@ -13,5 +13,11 @@
 }
 
 .filter:hover {
-    font-weight: 600;
+    font-weight: 800;
+}
+
+.active-filter {
+    background-color: #3a5a40;
+    color: white;
+    font-weight: 800;
 }
