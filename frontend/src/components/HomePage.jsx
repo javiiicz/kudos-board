@@ -14,6 +14,7 @@ const HomePage = ({
     searchField,
     setSearchField,
     handleSearchSubmit,
+    clearSearch
 }) => {
     return (
         <>
@@ -22,6 +23,7 @@ const HomePage = ({
                 searchField={searchField}
                 setSearchField={setSearchField}
                 handleSearchSubmit={handleSearchSubmit}
+                clearSearch={clearSearch}
             />
             <main className="home-main">
                 <BoardDisplay

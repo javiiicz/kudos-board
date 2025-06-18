@@ -1,7 +1,6 @@
 import "../styles/BoardDisplay.css";
 import Board from "./Board";
 import NewBoardSection from "./NewBoardSection";
-import WelcomeBoard from "./WelcomeBoard";
 
 const BoardDisplay = ({
     boards,
@@ -34,7 +33,9 @@ const BoardDisplay = ({
                     />
                 ))
             ) : (
-                <WelcomeBoard />
+                <div> 
+                    <h2>No board found...</h2>
+                </div>
             )}
         </div>
     );
