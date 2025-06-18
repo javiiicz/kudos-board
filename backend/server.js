@@ -126,11 +126,10 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
     let body = req.body;
 
     let boardId = req.params.boardID;
-    let { title, description, gifUrl, author, color } = body;
+    let { message, gifUrl, author, color } = body;
 
     if (
-        title === undefined ||
-        description === undefined ||
+        message === undefined ||
         gifUrl === undefined ||
         isNaN(boardId)
     ) {
@@ -153,8 +152,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
 
     const added = await prisma.card.create({
         data: {
-            title,
-            description,
+            message,
             gifUrl,
             author,
             boardId,
