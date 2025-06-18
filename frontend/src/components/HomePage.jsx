@@ -3,8 +3,7 @@ import HomeHeader from "./HomeHeader.jsx";
 import "../styles/HomePage.css"
 import { useState } from "react";
 
-const HomePage = ({boards, handleAddSubmit}) => {
-    const [showModal, setShowModal] = useState(false);
+const HomePage = ({boards, handleAddSubmit, showModal, setShowModal}) => {
 
     return (
         <>

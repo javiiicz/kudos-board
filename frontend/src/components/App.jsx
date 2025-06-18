@@ -13,6 +13,7 @@ function App() {
     const [cards, setCards] = useState([]);
     const [error, setError] = useState(null);
     const [currentBoard, setCurrentBoard] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const fetchGET = async (url) => {
         try {
@@ -24,9 +25,7 @@ function App() {
                     );
                 }
                 if (response.status === 404) {
-                    throw new Error(
-                        "404: Not Found."
-                    );
+                    throw new Error("404: Not Found.");
                 }
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -68,8 +67,8 @@ function App() {
             );
         } catch (e) {
             if (e.message.includes("400") || e.message.includes("404")) {
-                setError(e)
-                navigate("/error")
+                setError(e);
+                navigate("/error");
             } else {
                 console.error("Error while fetching board:", e);
             }
@@ -79,7 +78,10 @@ function App() {
 
     const deleteCard = async (cardID) => {
         try {
-            const response = await fetch(`http://localhost:3000/cards/${cardID}`, {method: 'DELETE'});
+            const response = await fetch(
+                `http://localhost:3000/cards/${cardID}`,
+                { method: "DELETE" }
+            );
             if (!response.ok) {
                 if (response.status === 400) {
                     throw new Error(
@@ -87,24 +89,22 @@ function App() {
                     );
                 }
                 if (response.status === 404) {
-                    throw new Error(
-                        "404: Not Found."
-                    );
+                    throw new Error("404: Not Found.");
                 }
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            fetchCardsForBoard(data.boardId)
+            fetchCardsForBoard(data.boardId);
         } catch (error) {
             console.error("Fetch error:", error);
             throw error;
         }
-    } 
+    };
 
     const handleAddSubmit = (e) => {
-        e.preventDefault()
-        console.log("Submitted")
-    }
+        e.preventDefault();
+        setShowModal(false)
+    };
 
     useEffect(() => {
         fetchBoards();
@@ -113,7 +113,17 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<HomePage boards={boards} handleAddSubmit={handleAddSubmit}/>} />
+                <Route
+                    path="/"
+                    element={
+                        <HomePage
+                            boards={boards}
+                            handleAddSubmit={handleAddSubmit}
+                            showModal={showModal}
+                            setShowModal={setShowModal}
+                        />
+                    }
+                />
                 <Route
                     path="/boards/:id"
                     element={
@@ -126,7 +136,7 @@ function App() {
                         />
                     }
                 />
-                <Route path="/*" element={<ErrorPage error={error}/>}/>
+                <Route path="/*" element={<ErrorPage error={error} />} />
             </Routes>
             <Footer />
         </>
