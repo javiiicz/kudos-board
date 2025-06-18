@@ -12,7 +12,6 @@ const BoardDetails = ({id, cards, currentBoard, deleteCard}) => {
         <>
             <h2>{currentBoard.title}</h2>
             {currentBoard.author && <h3>{currentBoard.author}</h3>}
-            <p>{currentBoard.description}</p>
             <p>{currentBoard.category}</p>
             <div className="card-container">
                 {cards.length ? (cards.map(card => <Card key={card.id} card={card} deleteCard={deleteCard}/>)) : (

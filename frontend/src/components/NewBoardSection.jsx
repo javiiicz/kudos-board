@@ -33,14 +33,6 @@ const NewBoardSection = ({setShowModal}) => {
                             required
                         ></input>
 
-                        <label for="description">Description*</label>
-                        <input
-                            type="text"
-                            id="desc"
-                            name="desc"
-                            required
-                        ></input>
-
                         <label for="category">Category*</label>
                         <select id="category" name="category" required>
                             <option value="">Select a category</option>
