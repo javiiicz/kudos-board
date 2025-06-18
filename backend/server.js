@@ -124,6 +124,32 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
     res.json(added);
 })
 
+// [DELETE] a board
+server.delete("/boards/:id", async (req, res, next) => {
+    let id = req.params.id
+
+    // make sure id is Integer
+    if (isNaN(id)) {
+        next({message: "ID of the board has to be an integer", status: 400})
+        return
+    }
+
+    id = parseInt(id)
+
+    // check if card exists
+    const exists = (await prisma.board.findUnique({where: {id: id}})) !== null
+    if (!exists) {
+        next({message: "The board you are deleting does not exist", status: 404})
+        return
+    }
+
+    const deleted = await prisma.board.delete({
+        where: {id: id}
+    })
+
+    res.json(deleted)
+});
+
 
 // [DELETE] a card
 server.delete("/cards/:id", async (req, res, next) => {
