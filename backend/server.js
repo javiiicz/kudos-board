@@ -90,11 +90,11 @@ server.post("/boards", async (req, res, next) => {
 
 
 // [POST] new card
-// [TODO] change url to /boards/:boardID/cards
-server.post("/cards", async (req, res, next) => {
+server.post("/boards/:boardID/cards", async (req, res, next) => {
     let body = req.body;
 
-    let {title, description, gifUrl, author, boardId} = body
+    let boardId = req.params.boardID
+    let {title, description, gifUrl, author} = body
 
 
     if (title === undefined ||  description === undefined || gifUrl === undefined || isNaN(boardId)) {
