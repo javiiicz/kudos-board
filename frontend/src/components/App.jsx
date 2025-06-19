@@ -22,6 +22,13 @@ function App() {
     });
     const [searchField, setSearchField] = useState("");
     const [filter, setFilter] = useState("all")
+    const [showCardModal, setShowCardModal] = useState(false)
+    const [cardFormData, setCardFormData] = useState({
+        message: "",
+        gifUrl: "",
+        author: "",
+        color: "yellow",
+    });
 
     const fetchRequest = async (url, method, body = null) => {
         try {
@@ -227,6 +234,10 @@ function App() {
                             fetchBoardByID={fetchBoardByID}
                             deleteCard={deleteCard}
                             toggleCardUpvote={toggleCardUpvote}
+                            showCardModal={showCardModal}
+                            setShowCardModal={setShowCardModal}
+                            cardFormData={cardFormData}
+                            setCardFormData={setCardFormData}
                         />
                     }
                 />

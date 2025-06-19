@@ -2,11 +2,11 @@ import "../styles/HomeHeader.css";
 import Title from "./Title";
 import AddCardButton from "./AddCardButton"
 
-const BoardHeader = () => {
+const BoardHeader = ({setShowCardModal}) => {
     return (
         <header>
             <Title/>
-            <AddCardButton />
+            <AddCardButton setShowCardModal={setShowCardModal}/>
         </header>
     );
 };

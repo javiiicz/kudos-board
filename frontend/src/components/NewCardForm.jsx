@@ -1,12 +1,12 @@
 import { X } from "lucide-react";
 import "../styles/NewCardForm.css";
 
-const NewCardForm = ({}) => {
+const NewCardForm = ({setShowCardModal}) => {
     return (
         <div className="modal-container">
-            <X onClick={() => {}} size={30} className="close-button" />
+            <X onClick={() => {setShowCardModal(false)}} size={30} className="close-button" />
             <div className="form-container">
-                <h2>Create a new Board:</h2>
+                <h2>Create a new Card:</h2>
                 <form className="add-form" onSubmit={() => {}}>
                     <div className="form-group">
                         <label>Message*</label>
@@ -30,9 +30,10 @@ const NewCardForm = ({}) => {
                     <div className="form-group">
                         <label>GIF*</label>
                         <input
-                            type="text"
+                            type="hidden"
                             id="gif"
                             name="gifUrl"
+                            readOnly
                             required
                         ></input>
                     </div>

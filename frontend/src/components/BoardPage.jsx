@@ -10,7 +10,11 @@ const BoardPage = ({
     currentBoard,
     fetchBoardByID,
     deleteCard,
-    toggleCardUpvote
+    toggleCardUpvote,
+    showCardModal,
+    setShowCardModal,
+    cardFormData,
+    setCardFormData,
 }) => {
     const { id } = useParams();
 
@@ -21,7 +25,7 @@ const BoardPage = ({
 
     return (
         <>
-            <BoardHeader />
+            <BoardHeader setShowCardModal={setShowCardModal}/>
             <main className="board-main">
                 <BoardDetails
                     id={id}
@@ -29,6 +33,10 @@ const BoardPage = ({
                     currentBoard={currentBoard}
                     deleteCard={deleteCard}
                     toggleCardUpvote={toggleCardUpvote}
+                    showCardModal={showCardModal}
+                    setShowCardModal={setShowCardModal}
+                    cardFormData={cardFormData}
+                    setCardFormData={setCardFormData}
                 />
             </main>
         </>

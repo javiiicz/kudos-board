@@ -1,5 +1,6 @@
 import Card from "./Card";
 import "../styles/BoardDetails.css";
+import NewCardForm from "./NewCardForm";
 
 const BoardDetails = ({
     id,
@@ -7,9 +8,15 @@ const BoardDetails = ({
     currentBoard,
     deleteCard,
     toggleCardUpvote,
+    showCardModal,
+    setShowCardModal
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
+    }
+
+    if (showCardModal) {
+        return <NewCardForm setShowCardModal={setShowCardModal}/>
     }
 
     return (
