@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: start;
+    gap:10px;
 
     padding: 30px;
 }
@@ -41,6 +42,15 @@
 }
 
 .unpinned-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: start;
+    gap: 30px;
+}
+
+.pinned-section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -174,7 +174,7 @@ function App() {
     const toggleCardUpvote = async (cardID) => {
         try {
             let data = await fetchRequest(
-                `${backend_url}/cards/${cardID}`,
+                `${backend_url}/cards/${cardID}/like`,
                 "PATCH"
             );
             fetchCardsForBoard(data.boardId);
@@ -271,6 +271,21 @@ function App() {
         fetchCardsForBoard(currentBoard.id)
     };
 
+    const toggleCardPin = async (cardID) => {
+        try {
+            let data = await fetchRequest(
+                `${backend_url}/cards/${cardID}/pin`,
+                "PATCH"
+            );
+            fetchCardsForBoard(data.boardId);
+        } catch (error) {
+            console.error("Fetch error:", error);
+            setError(error);
+            navigate("/error");
+            throw error;
+        }
+    }
+
     useEffect(() => {
         fetchBoards();
     }, []);
@@ -322,6 +337,7 @@ function App() {
                             gifResults={gifResults}
                             setGifResults={setGifResults}
                             handleCardAddSubmit={handleCardAddSubmit}
+                            toggleCardPin={toggleCardPin}
                         />
                     }
                 />

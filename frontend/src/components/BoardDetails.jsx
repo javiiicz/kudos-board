@@ -18,6 +18,7 @@ const BoardDetails = ({
     setCardFormData,
     setGifResults,
     handleCardAddSubmit,
+    toggleCardPin
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
@@ -78,6 +79,7 @@ const BoardDetails = ({
                                                     toggleCardUpvote={
                                                         toggleCardUpvote
                                                     }
+                                                    toggleCardPin={toggleCardPin}
                                                 />
                                             ))}
                                         {}
@@ -92,15 +94,16 @@ const BoardDetails = ({
                                 <></>
                             )}
                             <div className="unpinned-section">
-                                {unpinnedCards.length &&
+                                {unpinnedCards.length ?
                                     unpinnedCards.map((card) => (
                                         <Card
                                             key={card.id}
                                             card={card}
                                             deleteCard={deleteCard}
                                             toggleCardUpvote={toggleCardUpvote}
+                                            toggleCardPin={toggleCardPin}
                                         />
-                                    ))}
+                                    )) : <></>}
                             </div>
                         </>
                     ) : (
