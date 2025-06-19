@@ -25,13 +25,15 @@ model Board {
 }
 
 model Card {
-  id          Int      @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   message     String   
   gifUrl      String
   author      String?
-  upvotes     Int      @default(0)
-  board       Board    @relation("BoardCards", fields: [boardId], references: [id])
+  upvotes     Int         @default(0)
+  board       Board       @relation("BoardCards", fields: [boardId], references: [id])
   boardId     Int
-  color       String?   @default("yellow")
-  created_at  DateTime @default(now())
+  color       String?     @default("yellow")
+  created_at  DateTime    @default(now())
+  is_pinned   Boolean     @default(false)
+  pinned_at   DateTime?
 }
