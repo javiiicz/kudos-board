@@ -26,8 +26,8 @@ server.get("/boards", async (req, res, next) => {
                 break;
             case "recent":
                 boards.sort((a, b) => {
-                    let dateA = new Date(a.created_at)
-                    let dateB = new Date(b.created_at)
+                    let dateA = new Date(a.created_at);
+                    let dateB = new Date(b.created_at);
                     return dateB - dateA;
                 });
                 boards = boards.slice(0, 6);
@@ -83,10 +83,10 @@ server.get("/boards/:boardID/cards", async (req, res, next) => {
         where: { boardId: parseInt(id) },
     });
 
-    cards.sort((a,b) => {
-        let res = (new Date(a.created_at)) - (new Date(b.created_at));
-        return res
-        })
+    cards.sort((a, b) => {
+        let res = new Date(a.created_at) - new Date(b.created_at);
+        return res;
+    });
 
     res.json(cards);
 });
@@ -130,11 +130,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
     let boardId = req.params.boardID;
     let { message, gifUrl, author, color } = body;
 
-    if (
-        message === undefined ||
-        gifUrl === undefined ||
-        isNaN(boardId)
-    ) {
+    if (message === undefined || gifUrl === undefined || isNaN(boardId)) {
         next({ message: "The new card is missing information", status: 400 });
         return;
     }
@@ -226,7 +222,7 @@ server.delete("/cards/:id", async (req, res, next) => {
 });
 
 // [PATCH] a card to like
-server.patch("/cards/:id", async (req, res, next) => {
+server.patch("/cards/:id/like", async (req, res, next) => {
     let id = req.params.id;
 
     // make sure id is Integer
@@ -259,6 +255,58 @@ server.patch("/cards/:id", async (req, res, next) => {
             upvotes: card.upvotes + 1,
         },
     });
+
+    res.json(updateUser);
+});
+
+// [PATCH] a card to pin
+server.patch("/cards/:id/pin", async (req, res, next) => {
+    let id = req.params.id;
+
+    // make sure id is Integer
+    if (isNaN(id)) {
+        next({ message: "ID of the card has to be an integer", status: 400 });
+        return;
+    }
+
+    id = parseInt(id);
+
+    let card = await prisma.card.findUnique({ where: { id: id } });
+
+    // check if card exists
+    const exists = card !== null;
+    if (!exists) {
+        next({
+            message: "The card you are deleting does not exist",
+            status: 404,
+        });
+        return;
+    }
+
+    let updateUser = null;
+
+    // Check if card is pinnes / unpinned. Update accordingly
+    if (card.is_pinned) {
+        updateUser = await prisma.card.update({
+            where: {
+                id: id,
+            },
+            data: {
+                is_pinned: false,
+                pinned_at: null,
+            },
+        });
+    } else {
+        updateUser = await prisma.card.update({
+            where: {
+                id: id,
+            },
+            data: {
+                is_pinned: true,
+                pinned_at: new Date(Date.now()),
+            },
+        });
+    }
 
     res.json(updateUser);
 });
