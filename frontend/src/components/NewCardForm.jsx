@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import "../styles/NewCardForm.css";
+import GIFSelector from "./GIFSelector";
 
 const NewCardForm = ({setShowCardModal}) => {
     return (
@@ -7,7 +8,7 @@ const NewCardForm = ({setShowCardModal}) => {
             <X onClick={() => {setShowCardModal(false)}} size={30} className="close-button" />
             <div className="form-container">
                 <h2>Create a new Card:</h2>
-                <form className="add-form" onSubmit={() => {}}>
+                <form className="add-form" onSubmit={(e) => {e.preventDefault()}}>
                     <div className="form-group">
                         <label>Message*</label>
                         <input
@@ -29,11 +30,11 @@ const NewCardForm = ({setShowCardModal}) => {
 
                     <div className="form-group">
                         <label>GIF*</label>
+                        <GIFSelector/>
                         <input
                             type="hidden"
                             id="gif"
                             name="gifUrl"
-                            readOnly
                             required
                         ></input>
                     </div>
