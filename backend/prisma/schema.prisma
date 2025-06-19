@@ -36,4 +36,14 @@ model Card {
   created_at  DateTime    @default(now())
   is_pinned   Boolean     @default(false)
   pinned_at   DateTime?
+  comments    Comment[]   @relation("CardComments")
+}
+
+model Comment {
+  id          Int         @id @default(autoincrement())
+  message     String
+  author      String?
+  created_at  DateTime    @default(now())
+  card        Card        @relation("CardComments", fields: [cardId], references: [id])
+  cardId      Int         
 }
