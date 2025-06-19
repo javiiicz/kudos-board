@@ -188,7 +188,7 @@ function App() {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        fetchBoards(searchField);
+        fetchBoards(searchField, filter);
         setSearchField("");
     };
 
