@@ -1,5 +1,6 @@
 import Card from "./Card";
 import "../styles/BoardDetails.css";
+import NewCardForm from "./NewCardForm";
 
 const BoardDetails = ({
     id,
@@ -7,9 +8,35 @@ const BoardDetails = ({
     currentBoard,
     deleteCard,
     toggleCardUpvote,
+    showCardModal,
+    setShowCardModal,
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults,
+    cardFormData,
+    setCardFormData,
+    setGifResults,
+    handleCardAddSubmit
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
+    }
+
+    if (showCardModal) {
+        return (
+            <NewCardForm
+                setShowCardModal={setShowCardModal}
+                fetchGIFS={fetchGIFS}
+                gifSearch={gifSearch}
+                setGifSearch={setGifSearch}
+                gifResults={gifResults}
+                cardFormData={cardFormData}
+                setCardFormData={setCardFormData}
+                setGifResults={setGifResults}
+                handleCardAddSubmit={handleCardAddSubmit}
+            />
+        );
     }
 
     return (

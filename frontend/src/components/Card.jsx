@@ -9,7 +9,6 @@ const Card = ({ card, deleteCard, toggleCardUpvote }) => {
         <>
             <div className={cardClass}>
                 <div className="card-content">
-                    <h3>{card.title}</h3>
                     <div className="image-container">
                         <img
                             src={card.gifUrl}
@@ -18,7 +17,7 @@ const Card = ({ card, deleteCard, toggleCardUpvote }) => {
                         ></img>
                     </div>
                     <h4>{card.author ? card.author : "No Author"}</h4>
-                    <p>{card.description}</p>
+                    <p>{card.message}</p>
                     <p className="upvotes">
                         {card.upvotes}{" "}
                         {card.upvotes === 1 ? "Upvote" : "Upvotes"}

@@ -1,8 +1,8 @@
 import "../styles/AddCardButton.css"
 
-const CreateButton = () => {
+const CreateButton = ({setShowCardModal}) => {
     return (
-        <button className="add-button">
+        <button className="add-button" onClick={() => {setShowCardModal(true)}}>
             <p>+ Add a new Card</p>
         </button>
     )

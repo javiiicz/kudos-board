@@ -10,7 +10,17 @@ const BoardPage = ({
     currentBoard,
     fetchBoardByID,
     deleteCard,
-    toggleCardUpvote
+    toggleCardUpvote,
+    showCardModal,
+    setShowCardModal,
+    cardFormData,
+    setCardFormData,
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults,
+    setGifResults,
+    handleCardAddSubmit
 }) => {
     const { id } = useParams();
 
@@ -21,7 +31,7 @@ const BoardPage = ({
 
     return (
         <>
-            <BoardHeader />
+            <BoardHeader setShowCardModal={setShowCardModal} />
             <main className="board-main">
                 <BoardDetails
                     id={id}
@@ -29,6 +39,16 @@ const BoardPage = ({
                     currentBoard={currentBoard}
                     deleteCard={deleteCard}
                     toggleCardUpvote={toggleCardUpvote}
+                    showCardModal={showCardModal}
+                    setShowCardModal={setShowCardModal}
+                    cardFormData={cardFormData}
+                    setCardFormData={setCardFormData}
+                    fetchGIFS={fetchGIFS}
+                    gifSearch={gifSearch}
+                    setGifSearch={setGifSearch}
+                    gifResults={gifResults}
+                    setGifResults={setGifResults}
+                    handleCardAddSubmit={handleCardAddSubmit}
                 />
             </main>
         </>

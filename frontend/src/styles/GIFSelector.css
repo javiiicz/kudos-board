@@ -1,0 +1,27 @@
+.gif-selector-container {
+    background-color: #e5e5e5;
+    padding: 5px;
+}
+
+.gif-result {
+    max-width: 150px;
+    max-height: 100px;
+    cursor: pointer;
+}
+
+.gif-result:hover {
+    border-style: solid;
+    border-width: 4px;
+    border-color: green;
+}
+
+.gif-result-container {
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    gap:5px;
+}

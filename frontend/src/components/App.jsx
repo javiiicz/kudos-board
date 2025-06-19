@@ -21,7 +21,16 @@ function App() {
         author: "",
     });
     const [searchField, setSearchField] = useState("");
-    const [filter, setFilter] = useState("all")
+    const [filter, setFilter] = useState("all");
+    const [showCardModal, setShowCardModal] = useState(false);
+    const [cardFormData, setCardFormData] = useState({
+        message: "",
+        gifUrl: "",
+        author: "",
+        color: "yellow",
+    });
+    const [gifSearch, setGifSearch] = useState("");
+    const [gifResults, setGifResults] = useState([]);
 
     const fetchRequest = async (url, method, body = null) => {
         try {
@@ -182,17 +191,91 @@ function App() {
     };
 
     const clearSearch = () => {
-        fetchBoards()
+        fetchBoards();
         setSearchField("");
-    }
+    };
+
+    const parseGifs = (data) => {
+        let gifs = data.data;
+        return gifs;
+    };
+
+    const callGiphyApi = async () => {
+        try {
+            const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
+            const request = new Request(
+                `http://api.giphy.com/v1/gifs/search?limit=6&api_key=${apiKey}&q=${gifSearch.replace(
+                    " ",
+                    "%20"
+                )}`
+            );
+            const response = await fetch(request);
+            if (!response.ok) {
+                if (response.status === 400) {
+                    throw new Error(
+                        "400: The server could not understand the request."
+                    );
+                }
+                if (response.status === 404) {
+                    throw new Error("404: Not Found.");
+                }
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            let gifs = parseGifs(data);
+            return gifs;
+        } catch (error) {
+            console.error("Fetch error:", error);
+            throw error;
+        }
+    };
+
+    const fetchGIFS = async () => {
+        let gifs = await callGiphyApi();
+        setGifResults(gifs);
+    };
+
+    const handleCardAddSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!cardFormData.gifUrl) {
+            return
+        }
+
+        await createCard(cardFormData);
+        setCardFormData({
+            message: "",
+            gifUrl: "",
+            author: "",
+            color: "yellow",
+        });
+        setGifResults([])
+        setGifSearch("")
+        setShowCardModal(false);
+    };
+
+    const createCard = async (card) => {
+        try {
+            await fetchRequest(
+                `http://localhost:3000/boards/${currentBoard.id}/cards`,
+                "POST",
+                JSON.stringify(card)
+            );
+        } catch (error) {
+            console.error("Error while fetching board:", error);
+            setError(error);
+            navigate("/error");
+        }
+        fetchCardsForBoard(currentBoard.id)
+    };
 
     useEffect(() => {
         fetchBoards();
     }, []);
 
     useEffect(() => {
-        fetchBoards(null, filter)
-    }, [filter])
+        fetchBoards(null, filter);
+    }, [filter]);
 
     return (
         <>
@@ -227,6 +310,16 @@ function App() {
                             fetchBoardByID={fetchBoardByID}
                             deleteCard={deleteCard}
                             toggleCardUpvote={toggleCardUpvote}
+                            showCardModal={showCardModal}
+                            setShowCardModal={setShowCardModal}
+                            cardFormData={cardFormData}
+                            setCardFormData={setCardFormData}
+                            fetchGIFS={fetchGIFS}
+                            gifSearch={gifSearch}
+                            setGifSearch={setGifSearch}
+                            gifResults={gifResults}
+                            setGifResults={setGifResults}
+                            handleCardAddSubmit={handleCardAddSubmit}
                         />
                     }
                 />
