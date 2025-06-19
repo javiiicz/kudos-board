@@ -36,9 +36,9 @@ const GIFSelector = ({
             <button onClick={handleGIFSubmit}>Search GIPHY</button>
             <div className="gif-result-container">
                 {gifResults.length !== 0 &&
-                    gifResults.map((gif, index) => (
+                    gifResults.map((gif) => (
                         <img
-                            key={index}
+                            key={gif.id}
                             src={gif.images.original.url}
                             alt={gif.title}
                             className="gif-result"
