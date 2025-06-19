@@ -32,6 +32,8 @@ function App() {
     const [gifSearch, setGifSearch] = useState("");
     const [gifResults, setGifResults] = useState([]);
 
+    const backend_url = import.meta.env.VITE_BACKEND_URL
+
     const fetchRequest = async (url, method, body = null) => {
         try {
             const request = new Request(url, {
@@ -63,13 +65,13 @@ function App() {
 
     const fetchBoards = async (search = null, filter = null) => {
         let fetchedBoards = [];
-        let url = `http://localhost:3000/boards`;
+        let url = `${backend_url}/boards`;
 
         if (search && filter) {
-            url = `http://localhost:3000/boards?search=${search}&filter=${filter}`;
+            url = `${backend_url}/boards?search=${search}&filter=${filter}`;
         } else if (search || filter) {
             url =
-                `http://localhost:3000/boards?` +
+                `${backend_url}/boards?` +
                 (search ? `search=${search}` : "") +
                 (filter ? `filter=${filter}` : "");
         }
@@ -86,7 +88,7 @@ function App() {
         let fetchedCards = [];
         try {
             fetchedCards = await fetchRequest(
-                `http://localhost:3000/boards/${boardID}/cards`,
+                `${backend_url}/boards/${boardID}/cards`,
                 "GET"
             );
         } catch (e) {
@@ -101,7 +103,7 @@ function App() {
         let fetchedBoard = null;
         try {
             fetchedBoard = await fetchRequest(
-                `http://localhost:3000/boards/${boardID}`,
+                `${backend_url}/boards/${boardID}`,
                 "GET"
             );
         } catch (e) {
@@ -115,7 +117,7 @@ function App() {
     const deleteBoard = async (boardID) => {
         try {
             await fetchRequest(
-                `http://localhost:3000/boards/${boardID}`,
+                `${backend_url}/boards/${boardID}`,
                 "DELETE"
             );
             fetchBoards();
@@ -130,7 +132,7 @@ function App() {
     const deleteCard = async (cardID) => {
         try {
             let data = await fetchRequest(
-                `http://localhost:3000/cards/${cardID}`,
+                `${backend_url}/cards/${cardID}`,
                 "DELETE"
             );
             fetchCardsForBoard(data.boardId);
@@ -145,7 +147,7 @@ function App() {
     const createBoard = async (board) => {
         try {
             await fetchRequest(
-                "http://localhost:3000/boards",
+                "${backend_url}/boards",
                 "POST",
                 JSON.stringify(board)
             );
@@ -172,7 +174,7 @@ function App() {
     const toggleCardUpvote = async (cardID) => {
         try {
             let data = await fetchRequest(
-                `http://localhost:3000/cards/${cardID}`,
+                `${backend_url}/cards/${cardID}`,
                 "PATCH"
             );
             fetchCardsForBoard(data.boardId);
@@ -257,7 +259,7 @@ function App() {
     const createCard = async (card) => {
         try {
             await fetchRequest(
-                `http://localhost:3000/boards/${currentBoard.id}/cards`,
+                `${backend_url}/boards/${currentBoard.id}/cards`,
                 "POST",
                 JSON.stringify(card)
             );
