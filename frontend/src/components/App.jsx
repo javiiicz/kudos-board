@@ -147,7 +147,7 @@ function App() {
     const createBoard = async (board) => {
         try {
             await fetchRequest(
-                "${backend_url}/boards",
+                `${backend_url}/boards`,
                 "POST",
                 JSON.stringify(board)
             );
