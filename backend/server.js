@@ -26,7 +26,9 @@ server.get("/boards", async (req, res, next) => {
                 break;
             case "recent":
                 boards.sort((a, b) => {
-                    a.created_at - b.created_at;
+                    let dateA = new Date(a.created_at)
+                    let dateB = new Date(b.created_at)
+                    return dateB - dateA;
                 });
                 boards = boards.slice(0, 6);
                 break;
