@@ -15,6 +15,10 @@ const BoardPage = ({
     setShowCardModal,
     cardFormData,
     setCardFormData,
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults
 }) => {
     const { id } = useParams();
 
@@ -25,7 +29,7 @@ const BoardPage = ({
 
     return (
         <>
-            <BoardHeader setShowCardModal={setShowCardModal}/>
+            <BoardHeader setShowCardModal={setShowCardModal} />
             <main className="board-main">
                 <BoardDetails
                     id={id}
@@ -37,6 +41,10 @@ const BoardPage = ({
                     setShowCardModal={setShowCardModal}
                     cardFormData={cardFormData}
                     setCardFormData={setCardFormData}
+                    fetchGIFS={fetchGIFS}
+                    gifSearch={gifSearch}
+                    setGifSearch={setGifSearch}
+                    gifResults={gifResults}
                 />
             </main>
         </>

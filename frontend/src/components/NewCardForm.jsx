@@ -2,13 +2,30 @@ import { X } from "lucide-react";
 import "../styles/NewCardForm.css";
 import GIFSelector from "./GIFSelector";
 
-const NewCardForm = ({setShowCardModal}) => {
+const NewCardForm = ({
+    setShowCardModal,
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults
+}) => {
     return (
         <div className="modal-container">
-            <X onClick={() => {setShowCardModal(false)}} size={30} className="close-button" />
+            <X
+                onClick={() => {
+                    setShowCardModal(false);
+                }}
+                size={30}
+                className="close-button"
+            />
             <div className="form-container">
                 <h2>Create a new Card:</h2>
-                <form className="add-form" onSubmit={(e) => {e.preventDefault()}}>
+                <form
+                    className="add-form"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                    }}
+                >
                     <div className="form-group">
                         <label>Message*</label>
                         <input
@@ -21,16 +38,17 @@ const NewCardForm = ({setShowCardModal}) => {
 
                     <div className="form-group">
                         <label>Author</label>
-                        <input
-                            type="text"
-                            id="author"
-                            name="author"
-                        ></input>
+                        <input type="text" id="author" name="author"></input>
                     </div>
 
                     <div className="form-group">
                         <label>GIF*</label>
-                        <GIFSelector/>
+                        <GIFSelector
+                            fetchGIFS={fetchGIFS}
+                            gifSearch={gifSearch}
+                            setGifSearch={setGifSearch}
+                            gifResults={gifResults}
+                        />
                         <input
                             type="hidden"
                             id="gif"

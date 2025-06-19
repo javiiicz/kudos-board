@@ -9,14 +9,26 @@ const BoardDetails = ({
     deleteCard,
     toggleCardUpvote,
     showCardModal,
-    setShowCardModal
+    setShowCardModal,
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
     }
 
     if (showCardModal) {
-        return <NewCardForm setShowCardModal={setShowCardModal}/>
+        return (
+            <NewCardForm
+                setShowCardModal={setShowCardModal}
+                fetchGIFS={fetchGIFS}
+                gifSearch={gifSearch}
+                setGifSearch={setGifSearch}
+                gifResults={gifResults}
+            />
+        );
     }
 
     return (
