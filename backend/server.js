@@ -91,6 +91,28 @@ server.get("/boards/:boardID/cards", async (req, res, next) => {
     res.json(cards);
 });
 
+// [GET] comments for a specific card
+server.get("/cards/:cardID/comments", async (req, res, next) => {
+    let id = req.params.cardID;
+
+    // make sure id is Integer
+    if (isNaN(id)) {
+        next({ message: "ID of the card has to be an integer", status: 400 });
+        return;
+    }
+
+    let comments = await prisma.comment.findMany({
+        where: { cardId: parseInt(id) },
+    });
+
+    comments.sort((a, b) => {
+        let res = new Date(a.created_at) - new Date(b.created_at);
+        return res;
+    });
+
+    res.json(comments);
+});
+
 // [POST] new board
 server.post("/boards", async (req, res, next) => {
     let body = req.body;
@@ -165,7 +187,7 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
 server.post("/cards/:cardID/comments", async (req, res, next) => {
     let body = req.body;
 
-    let cardId = req.params.boardID;
+    let cardId = req.params.cardID;
     let { message, author } = body;
 
     if (message === undefined || isNaN(cardId)) {
