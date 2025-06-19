@@ -10,7 +10,8 @@ const NewCardForm = ({
     gifResults,
     cardFormData,
     setCardFormData,
-    setGifResults
+    setGifResults,
+    handleCardAddSubmit
 }) => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -33,9 +34,7 @@ const NewCardForm = ({
                 <h2>Create a new Card:</h2>
                 <form
                     className="add-form"
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                    }}
+                    onSubmit={handleCardAddSubmit}
                 >
                     <div className="form-group">
                         <label>Message*</label>

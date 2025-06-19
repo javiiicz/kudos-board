@@ -197,7 +197,7 @@ function App() {
 
     const parseGifs = (data) => {
         let gifs = data.data;
-        return gifs
+        return gifs;
     };
 
     const callGiphyApi = async () => {
@@ -223,16 +223,33 @@ function App() {
             }
             const data = await response.json();
             let gifs = parseGifs(data);
-            return gifs
+            return gifs;
         } catch (error) {
             console.error("Fetch error:", error);
             throw error;
         }
-    }
+    };
 
     const fetchGIFS = async () => {
-        let gifs = await callGiphyApi()
+        let gifs = await callGiphyApi();
         setGifResults(gifs);
+    };
+
+    const handleCardAddSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!cardFormData.gifUrl) {
+            return
+        }
+
+        //await createCard(addFormData);
+        setCardFormData({
+            message: "",
+            gifUrl: "",
+            author: "",
+            color: "yellow",
+        });
+        setShowCardModal(false);
     };
 
     useEffect(() => {
@@ -285,6 +302,7 @@ function App() {
                             setGifSearch={setGifSearch}
                             gifResults={gifResults}
                             setGifResults={setGifResults}
+                            handleCardAddSubmit={handleCardAddSubmit}
                         />
                     }
                 />

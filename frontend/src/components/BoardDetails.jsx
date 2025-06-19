@@ -16,7 +16,8 @@ const BoardDetails = ({
     gifResults,
     cardFormData,
     setCardFormData,
-    setGifResults
+    setGifResults,
+    handleCardAddSubmit
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
@@ -33,6 +34,7 @@ const BoardDetails = ({
                 cardFormData={cardFormData}
                 setCardFormData={setCardFormData}
                 setGifResults={setGifResults}
+                handleCardAddSubmit={handleCardAddSubmit}
             />
         );
     }
