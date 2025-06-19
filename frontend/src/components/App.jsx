@@ -249,6 +249,8 @@ function App() {
             author: "",
             color: "yellow",
         });
+        setGifResults([])
+        setGifSearch("")
         setShowCardModal(false);
     };
 
