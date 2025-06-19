@@ -242,7 +242,7 @@ function App() {
             return
         }
 
-        //await createCard(addFormData);
+        await createCard(cardFormData);
         setCardFormData({
             message: "",
             gifUrl: "",
@@ -250,6 +250,21 @@ function App() {
             color: "yellow",
         });
         setShowCardModal(false);
+    };
+
+    const createCard = async (card) => {
+        try {
+            await fetchRequest(
+                `http://localhost:3000/boards/${currentBoard.id}/cards`,
+                "POST",
+                JSON.stringify(card)
+            );
+        } catch (error) {
+            console.error("Error while fetching board:", error);
+            setError(error);
+            navigate("/error");
+        }
+        fetchCardsForBoard(currentBoard.id)
     };
 
     useEffect(() => {
