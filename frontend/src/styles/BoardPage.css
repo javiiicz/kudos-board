@@ -1,4 +1,5 @@
 .board-main {
+    position: relative;
     background: white;
     background: radial-gradient(
         circle,

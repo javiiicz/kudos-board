@@ -1,6 +1,8 @@
 import Card from "./Card";
 import "../styles/BoardDetails.css";
 import NewCardForm from "./NewCardForm";
+import CardModal from "./CardModal";
+import { useEffect } from "react";
 
 const BoardDetails = ({
     id,
@@ -18,7 +20,11 @@ const BoardDetails = ({
     setCardFormData,
     setGifResults,
     handleCardAddSubmit,
-    toggleCardPin
+    toggleCardPin,
+    selectedCard,
+    setSelectedCard,
+    showComments,
+    setShowComments,
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
@@ -43,10 +49,14 @@ const BoardDetails = ({
     let pinnedCards = cards.filter((x) => x.is_pinned);
     let unpinnedCards = cards.filter((x) => !x.is_pinned);
     pinnedCards.sort((a, b) => {
-        let dateA = new Date(a.pinned_at)
-        let dateB = new Date(b.pinned_at)
+        let dateA = new Date(a.pinned_at);
+        let dateB = new Date(b.pinned_at);
         return dateA - dateB;
-    })
+    });
+
+    useEffect(() => {
+        setShowComments(false)
+    }, [])
 
     return (
         <>
@@ -79,7 +89,9 @@ const BoardDetails = ({
                                                     toggleCardUpvote={
                                                         toggleCardUpvote
                                                     }
-                                                    toggleCardPin={toggleCardPin}
+                                                    toggleCardPin={
+                                                        toggleCardPin
+                                                    }
                                                 />
                                             ))}
                                         {}
@@ -94,7 +106,7 @@ const BoardDetails = ({
                                 <></>
                             )}
                             <div className="unpinned-section">
-                                {unpinnedCards.length ?
+                                {unpinnedCards.length ? (
                                     unpinnedCards.map((card) => (
                                         <Card
                                             key={card.id}
@@ -102,8 +114,13 @@ const BoardDetails = ({
                                             deleteCard={deleteCard}
                                             toggleCardUpvote={toggleCardUpvote}
                                             toggleCardPin={toggleCardPin}
+                                            setSelectedCard={setSelectedCard}
+                                            setShowComments={setShowComments}
                                         />
-                                    )) : <></>}
+                                    ))
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                         </>
                     ) : (
@@ -111,6 +128,7 @@ const BoardDetails = ({
                     )}
                 </div>
             </div>
+            {showComments ? <CardModal selectedCard={selectedCard} setShowComments={setShowComments}/> : <></>} 
         </>
     );
 };

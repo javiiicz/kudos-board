@@ -31,6 +31,8 @@ function App() {
     });
     const [gifSearch, setGifSearch] = useState("");
     const [gifResults, setGifResults] = useState([]);
+    const [selectedCard, setSelectedCard] = useState(null);
+    const [showComments, setShowComments] = useState(false)
 
     const backend_url = import.meta.env.VITE_BACKEND_URL
 
@@ -338,6 +340,10 @@ function App() {
                             setGifResults={setGifResults}
                             handleCardAddSubmit={handleCardAddSubmit}
                             toggleCardPin={toggleCardPin}
+                            selectedCard={selectedCard}
+                            setSelectedCard={setSelectedCard}
+                            showComments={showComments}
+                            setShowComments={setShowComments}
                         />
                     }
                 />

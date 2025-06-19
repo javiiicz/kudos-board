@@ -1,13 +1,24 @@
 import { Heart, Pin, Trash } from "lucide-react";
 import "../styles/Card.css";
 
-const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
-    let cardClass = "kudos-card " + card.color + (card.is_pinned ? " pinned" : "");
+const Card = ({
+    card,
+    deleteCard,
+    toggleCardUpvote,
+    toggleCardPin,
+    setSelectedCard,
+    setShowComments,
+}) => {
+    let cardClass =
+        "kudos-card " + card.color + (card.is_pinned ? " pinned" : "");
 
-    let pinClass = "card-button pin " + (card.is_pinned ? "active" : "" )
+    let pinClass = "card-button pin " + (card.is_pinned ? "active" : "");
     return (
         <>
-            <div className={cardClass}>
+            <div className={cardClass} onClick={() => {
+                setSelectedCard(card)
+                setShowComments(true)
+            }}>
                 <div className="card-content">
                     <div className="image-container">
                         <img
@@ -31,7 +42,7 @@ const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
                             toggleCardPin(card.id);
                         }}
                     >
-                        {<Pin size={20}/>}
+                        {<Pin size={20} />}
                     </button>
                     <button
                         className="card-button heart"
@@ -40,7 +51,11 @@ const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
                             toggleCardUpvote(card.id);
                         }}
                     >
-                        {card.liked ? <Heart size={20} fill={'red'} color={'red'}/> : <Heart size={20}/>}
+                        {card.liked ? (
+                            <Heart size={20} fill={"red"} color={"red"} />
+                        ) : (
+                            <Heart size={20} />
+                        )}
                     </button>
                     <button
                         className="card-button trash"
@@ -49,7 +64,7 @@ const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
                             deleteCard(card.id);
                         }}
                     >
-                        <Trash size={20}/>
+                        <Trash size={20} />
                     </button>
                 </div>
             </div>

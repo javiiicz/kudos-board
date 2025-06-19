@@ -21,7 +21,11 @@ const BoardPage = ({
     gifResults,
     setGifResults,
     handleCardAddSubmit,
-    toggleCardPin
+    toggleCardPin,
+    selectedCard,
+    setSelectedCard,
+    showComments,
+    setShowComments,
 }) => {
     const { id } = useParams();
 
@@ -51,6 +55,10 @@ const BoardPage = ({
                     setGifResults={setGifResults}
                     handleCardAddSubmit={handleCardAddSubmit}
                     toggleCardPin={toggleCardPin}
+                    selectedCard={selectedCard}
+                    setSelectedCard={setSelectedCard}
+                    showComments={showComments}
+                    setShowComments={setShowComments}
                 />
             </main>
         </>
