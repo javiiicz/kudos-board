@@ -2,7 +2,7 @@ import { Heart, Pin, Trash } from "lucide-react";
 import "../styles/Card.css";
 
 const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
-    let cardClass = "kudos-card " + card.color;
+    let cardClass = "kudos-card " + card.color + (card.is_pinned ? " pinned" : "");
 
     let pinClass = "card-button pin " + (card.is_pinned ? "active" : "" )
     return (
