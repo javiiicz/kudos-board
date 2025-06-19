@@ -161,6 +161,45 @@ server.post("/boards/:boardID/cards", async (req, res, next) => {
     res.json(added);
 });
 
+// [POST] new comment
+server.post("/cards/:cardID/comments", async (req, res, next) => {
+    let body = req.body;
+
+    let cardId = req.params.boardID;
+    let { message, author } = body;
+
+    if (message === undefined || isNaN(cardId)) {
+        next({
+            message: "The new comment is missing information",
+            status: 400,
+        });
+        return;
+    }
+
+    cardId = parseInt(cardId);
+
+    // Check that the board exists
+    const exists =
+        (await prisma.card.findUnique({ where: { id: cardId } })) !== null;
+    if (!exists) {
+        next({
+            message: "The card where you are posting this comment does not exist",
+            status: 400,
+        });
+        return;
+    }
+
+    const added = await prisma.comment.create({
+        data: {
+            message,
+            author,
+            cardId: cardId,
+        },
+    });
+
+    res.json(added);
+});
+
 // [DELETE] a board
 server.delete("/boards/:id", async (req, res, next) => {
     let id = req.params.id;
