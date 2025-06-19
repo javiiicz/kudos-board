@@ -1,6 +1,14 @@
 import "../styles/GIFSelector.css";
 
-const GIFSelector = ({ fetchGIFS, gifSearch, setGifSearch, gifResults }) => {
+const GIFSelector = ({
+    fetchGIFS,
+    gifSearch,
+    setGifSearch,
+    gifResults,
+    cardFormData,
+    setCardFormData,
+    setGifResults
+}) => {
     const handleGIFSubmit = (e) => {
         e.preventDefault();
         fetchGIFS();
@@ -8,6 +16,14 @@ const GIFSelector = ({ fetchGIFS, gifSearch, setGifSearch, gifResults }) => {
 
     const handleFieldChange = (e) => {
         setGifSearch(e.target.value);
+    };
+
+    const selectGif = (gif) => {
+        setCardFormData({
+            ...cardFormData,
+            gifUrl: gif.images.original.url,
+        });
+        setGifResults([gif])
     };
 
     return (
@@ -26,6 +42,7 @@ const GIFSelector = ({ fetchGIFS, gifSearch, setGifSearch, gifResults }) => {
                             src={gif.images.original.url}
                             alt={gif.title}
                             className="gif-result"
+                            onClick={() => {selectGif(gif)}}
                         ></img>
                     ))}
             </div>

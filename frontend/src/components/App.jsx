@@ -284,6 +284,7 @@ function App() {
                             gifSearch={gifSearch}
                             setGifSearch={setGifSearch}
                             gifResults={gifResults}
+                            setGifResults={setGifResults}
                         />
                     }
                 />

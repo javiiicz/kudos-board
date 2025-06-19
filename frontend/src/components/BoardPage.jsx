@@ -18,7 +18,8 @@ const BoardPage = ({
     fetchGIFS,
     gifSearch,
     setGifSearch,
-    gifResults
+    gifResults,
+    setGifResults
 }) => {
     const { id } = useParams();
 
@@ -45,6 +46,7 @@ const BoardPage = ({
                     gifSearch={gifSearch}
                     setGifSearch={setGifSearch}
                     gifResults={gifResults}
+                    setGifResults={setGifResults}
                 />
             </main>
         </>

@@ -7,8 +7,19 @@ const NewCardForm = ({
     fetchGIFS,
     gifSearch,
     setGifSearch,
-    gifResults
+    gifResults,
+    cardFormData,
+    setCardFormData,
+    setGifResults
 }) => {
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setCardFormData({
+            ...cardFormData,
+            [name]: value,
+        });
+    };
+
     return (
         <div className="modal-container">
             <X
@@ -32,13 +43,21 @@ const NewCardForm = ({
                             type="text"
                             id="message"
                             name="message"
+                            value={cardFormData.message}
+                            onChange={handleInputChange}
                             required
                         ></input>
                     </div>
 
                     <div className="form-group">
                         <label>Author</label>
-                        <input type="text" id="author" name="author"></input>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            value={cardFormData.author}
+                            onChange={handleInputChange}
+                        ></input>
                     </div>
 
                     <div className="form-group">
@@ -48,18 +67,28 @@ const NewCardForm = ({
                             gifSearch={gifSearch}
                             setGifSearch={setGifSearch}
                             gifResults={gifResults}
+                            cardFormData={cardFormData}
+                            setCardFormData={setCardFormData}
+                            setGifResults={setGifResults}
                         />
                         <input
                             type="hidden"
                             id="gif"
                             name="gifUrl"
                             required
+                            value={cardFormData.message}
                         ></input>
                     </div>
 
                     <div className="form-group">
                         <label>Color*</label>
-                        <select id="category" name="category" required>
+                        <select
+                            id="color"
+                            name="color"
+                            required
+                            value={cardFormData.color}
+                            onChange={handleInputChange}
+                        >
                             <option value="yellow">Yellow</option>
                             <option value="green">Green</option>
                             <option value="pink">Pink</option>

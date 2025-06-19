@@ -13,7 +13,10 @@ const BoardDetails = ({
     fetchGIFS,
     gifSearch,
     setGifSearch,
-    gifResults
+    gifResults,
+    cardFormData,
+    setCardFormData,
+    setGifResults
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
@@ -27,6 +30,9 @@ const BoardDetails = ({
                 gifSearch={gifSearch}
                 setGifSearch={setGifSearch}
                 gifResults={gifResults}
+                cardFormData={cardFormData}
+                setCardFormData={setCardFormData}
+                setGifResults={setGifResults}
             />
         );
     }
