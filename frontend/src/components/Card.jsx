@@ -1,10 +1,10 @@
-import { Heart, Trash } from "lucide-react";
+import { Heart, Pin, Trash } from "lucide-react";
 import "../styles/Card.css";
 
-const Card = ({ card, deleteCard, toggleCardUpvote }) => {
+const Card = ({ card, deleteCard, toggleCardUpvote, toggleCardPin }) => {
     let cardClass = "kudos-card " + card.color;
 
-    let likeClass = "card-button heart"
+    let pinClass = "card-button pin " + (card.is_pinned ? "active" : "" )
     return (
         <>
             <div className={cardClass}>
@@ -25,7 +25,16 @@ const Card = ({ card, deleteCard, toggleCardUpvote }) => {
                 </div>
                 <div className="card-button-container">
                     <button
-                        className={likeClass}
+                        className={pinClass}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleCardPin(card.id);
+                        }}
+                    >
+                        {<Pin size={20}/>}
+                    </button>
+                    <button
+                        className="card-button heart"
                         onClick={(e) => {
                             e.stopPropagation();
                             toggleCardUpvote(card.id);

@@ -17,7 +17,7 @@
 .kudos-card {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    width: 300px;
     aspect-ratio: 1 / 1;
     height: 100%;
     padding: 10px;
@@ -52,7 +52,7 @@
 
 .card-button-container {
     position: absolute;
-    transform: translateX(240px) translateY(-20px);
+    transform: translateX(200px) translateY(-20px);
 }
 
 .card-button {
@@ -71,7 +71,7 @@
 }
 
 .active {
-    background-color: #ffb7b2;
+    background-color: #48cae4;
 }
 
 .card-button:active {
@@ -84,6 +84,14 @@
 
 .trash:hover {
     background-color: #bbc3c9;
+}
+
+.pin {
+    border-color: #00b4d8;
+}
+
+.pin:hover {
+    background-color: #90e0ef;
 }
 
 @media (max-width: 800px) {
