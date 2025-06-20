@@ -11,3 +11,9 @@
 
     padding: 30px;
 }
+
+@media (max-width: 800px) {
+    .board-container{
+        justify-content: center;
+    }
+}

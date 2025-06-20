@@ -62,3 +62,9 @@
     justify-content: center;
     gap: 30px;
 }
+
+@media (max-width: 800px) {
+    .board-details {
+        max-height: calc(100vh - 50px - 60px - 196px);
+    }
+}
