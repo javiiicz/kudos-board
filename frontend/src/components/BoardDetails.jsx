@@ -159,6 +159,12 @@ const BoardDetails = ({ id, handleError, showCardModal, setShowCardModal }) => {
                                                     toggleCardPin={
                                                         toggleCardPin
                                                     }
+                                                    setSelectedCard={
+                                                        setSelectedCard
+                                                    }
+                                                    setShowComments={
+                                                        setShowComments
+                                                    }
                                                 />
                                             ))}
                                         {}
@@ -199,6 +205,7 @@ const BoardDetails = ({ id, handleError, showCardModal, setShowCardModal }) => {
                 <CardModal
                     selectedCard={selectedCard}
                     setShowComments={setShowComments}
+                    handleError={handleError}
                 />
             ) : (
                 <></>

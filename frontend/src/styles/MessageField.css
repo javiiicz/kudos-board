@@ -1,0 +1,10 @@
+.comment-form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}

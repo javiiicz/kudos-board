@@ -1,12 +1,16 @@
-import "../styles/Comment.css"
+import "../styles/Comment.css";
 
-const Comment = ({comment}) => {
+const Comment = ({ comment }) => {
     return (
         <div className="comment">
-            <h4>{comment.author ? comment.author : "no author"}</h4>
-            <p>{comment.message}</p>
+            <p>
+                <span className="comment-author">
+                    {comment.author ? comment.author : "No author"}:
+                </span>{" "}
+                {comment.message}
+            </p>
         </div>
-    )
-}
+    );
+};
 
 export default Comment;

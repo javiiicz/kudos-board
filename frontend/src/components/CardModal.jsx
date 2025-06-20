@@ -3,9 +3,14 @@ import DisplayCard from "./DisplayCard";
 import { fetchRequest } from "../utils/utils";
 import { useState, useEffect } from "react";
 import Comment from "./Comment";
+import MessageField from "./MessageField";
 
-const CardModal = ({ selectedCard, setShowComments }) => {
+const CardModal = ({ selectedCard, setShowComments, handleError }) => {
     const [comments, setComments] = useState([]);
+    const [commentForm, setCommentForm] = useState({
+        message: "",
+        author: "",
+    });
 
     const backend_url = import.meta.env.VITE_BACKEND_URL;
 
@@ -23,10 +28,33 @@ const CardModal = ({ selectedCard, setShowComments }) => {
         setComments(fetchedComments);
     };
 
+    const createComment = async (comment) => {
+        try {
+            await fetchRequest(
+                `${backend_url}/cards/${selectedCard.id}/comments`,
+                "POST",
+                JSON.stringify(comment)
+            );
+        } catch (error) {
+            console.error("Error while fetching board:", error);
+            handleError(error);
+        }
+        fetchCommentsForCard(selectedCard.id);
+    };
+
+    const submitComment = (e) => {
+        e.preventDefault();
+        createComment(commentForm);
+        setCommentForm({
+            message: "",
+            author: "",
+        });
+        fetchCommentsForCard(selectedCard.id);
+    };
+
     useEffect(() => {
-        console.log("fetching")
-        fetchCommentsForCard(selectedCard.id)
-    }, [])
+        fetchCommentsForCard(selectedCard.id);
+    }, []);
 
     return (
         <div
@@ -35,13 +63,28 @@ const CardModal = ({ selectedCard, setShowComments }) => {
                 setShowComments(false);
             }}
         >
-            <div className="card-modal-content">
+            <div
+                className="card-modal-content"
+                onClick={(e) => {
+                    e.stopPropagation();
+                }}
+            >
                 <div>
                     <DisplayCard card={selectedCard} />
                 </div>
-                <div>
-                    {comments.length ? (comments.map(comment => <Comment comment={comment}/>)) : <></>}
+                <div className="comment-container">
+                    {comments.length ? (
+                        comments.map((comment) => <Comment comment={comment} />)
+                    ) : (
+                        <></>
+                    )}
                 </div>
+                <MessageField
+                    commentForm={commentForm}
+                    setCommentForm={setCommentForm}
+                    createComment={createComment}
+                    submitComment={submitComment}
+                />
             </div>
         </div>
     );
