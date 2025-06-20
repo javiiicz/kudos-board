@@ -3,26 +3,125 @@ import "../styles/BoardDetails.css";
 import NewCardForm from "./NewCardForm";
 import CardModal from "./CardModal";
 import { useEffect, useState } from "react";
+import { fetchRequest } from "../utils/utils";
 
-const BoardDetails = ({
-    id,
-    cards,
-    currentBoard,
-    deleteCard,
-    toggleCardUpvote,
-    showCardModal,
-    setShowCardModal,
-    gifSearch,
-    setGifSearch,
-    toggleCardPin,
-    createCard
-}) => {
+const BoardDetails = ({ id, handleError, showCardModal, setShowCardModal }) => {
+    const [cards, setCards] = useState([]);
+    const [currentBoard, setCurrentBoard] = useState(null);
+    const [showComments, setShowComments] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+    const fetchCardsForBoard = async (boardID) => {
+        let fetchedCards = [];
+        try {
+            fetchedCards = await fetchRequest(
+                `${backend_url}/boards/${boardID}/cards`,
+                "GET"
+            );
+        } catch (e) {
+            console.error("Error while fetching cards for a board", e);
+            handleError(e);
+        }
+        setCards(fetchedCards);
+    };
+
+    const createCard = async (card) => {
+        try {
+            await fetchRequest(
+                `${backend_url}/boards/${currentBoard.id}/cards`,
+                "POST",
+                JSON.stringify(card)
+            );
+        } catch (error) {
+            console.error("Error while fetching board:", error);
+            handleError(error);
+        }
+        fetchCardsForBoard(currentBoard.id);
+    };
+
+    const fetchBoardByID = async (boardID) => {
+        let fetchedBoard = null;
+        try {
+            fetchedBoard = await fetchRequest(
+                `${backend_url}/boards/${boardID}`,
+                "GET"
+            );
+        } catch (e) {
+            console.error("Error while fetching board:", e);
+            handleError(e);
+        }
+        setCurrentBoard(fetchedBoard);
+    };
+
+    const deleteCard = async (cardID) => {
+        try {
+            let data = await fetchRequest(
+                `${backend_url}/cards/${cardID}`,
+                "DELETE"
+            );
+            fetchCardsForBoard(data.boardId);
+        } catch (error) {
+            console.error("Fetch error:", error);
+            handleError(error);
+            throw error;
+        }
+    };
+
+    const toggleCardUpvote = async (cardID) => {
+        try {
+            let data = await fetchRequest(
+                `${backend_url}/cards/${cardID}/like`,
+                "PATCH"
+            );
+            fetchCardsForBoard(data.boardId);
+        } catch (error) {
+            console.error("Fetch error:", error);
+            handleError(error);
+        }
+    };
+
+    const toggleCardPin = async (cardID) => {
+        try {
+            let data = await fetchRequest(
+                `${backend_url}/cards/${cardID}/pin`,
+                "PATCH"
+            );
+            fetchCardsForBoard(data.boardId);
+        } catch (error) {
+            console.error("Fetch error:", error);
+            handleError(error);
+        }
+    };
+
+    const fetchCommentsForCard = async (cardID) => {
+        let fetchedComments = [];
+        try {
+            fetchedCards = await fetchRequest(
+                `${backend_url}/cards/${cardID}/comments`,
+                "GET"
+            );
+        } catch (e) {
+            console.error("Error while fetching comments for a card", e);
+            handleError(e);
+        }
+        //setComments(fetchedComments);
+    };
+
+    useEffect(() => {
+        fetchCardsForBoard(id);
+        fetchBoardByID(id);
+    }, []);
+
+    useEffect(() => {
+        setShowComments(false);
+    }, []);
+
+
     if (!currentBoard) {
         return <p>Loading</p>;
     }
-
-    const [showComments, setShowComments] = useState(false)
-    const [selectedCard, setSelectedCard] = useState(null);
 
     if (showCardModal) {
         return (
@@ -40,10 +139,6 @@ const BoardDetails = ({
         let dateB = new Date(b.pinned_at);
         return dateA - dateB;
     });
-
-    useEffect(() => {
-        setShowComments(false)
-    }, [])
 
     return (
         <>
@@ -115,7 +210,14 @@ const BoardDetails = ({
                     )}
                 </div>
             </div>
-            {showComments ? <CardModal selectedCard={selectedCard} setShowComments={setShowComments}/> : <></>} 
+            {showComments ? (
+                <CardModal
+                    selectedCard={selectedCard}
+                    setShowComments={setShowComments}
+                />
+            ) : (
+                <></>
+            )}
         </>
     );
 };
