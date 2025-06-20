@@ -31,7 +31,7 @@ export const callGiphyApi = async (search) => {
         try {
             const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
             const request = new Request(
-                `http://api.giphy.com/v1/gifs/search?limit=6&api_key=${apiKey}&q=${search.replace(
+                `https://api.giphy.com/v1/gifs/search?limit=6&api_key=${apiKey}&q=${search.replace(
                     " ",
                     "%20"
                 )}`
