@@ -18,7 +18,11 @@ function App() {
     };
 
     useEffect(() => {
-        document.querySelector('#root').classList.toggle("dark-mode")
+        if (isDarkMode) {
+            document.querySelector('#root').classList.add("dark-mode")
+        } else {
+            document.querySelector('#root').classList.remove("dark-mode")
+        }
     }, [isDarkMode])
 
     return (
