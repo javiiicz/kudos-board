@@ -95,20 +95,6 @@ const BoardDetails = ({ id, handleError, showCardModal, setShowCardModal }) => {
         }
     };
 
-    const fetchCommentsForCard = async (cardID) => {
-        let fetchedComments = [];
-        try {
-            fetchedCards = await fetchRequest(
-                `${backend_url}/cards/${cardID}/comments`,
-                "GET"
-            );
-        } catch (e) {
-            console.error("Error while fetching comments for a card", e);
-            handleError(e);
-        }
-        //setComments(fetchedComments);
-    };
-
     useEffect(() => {
         fetchCardsForBoard(id);
         fetchBoardByID(id);
@@ -117,7 +103,6 @@ const BoardDetails = ({ id, handleError, showCardModal, setShowCardModal }) => {
     useEffect(() => {
         setShowComments(false);
     }, []);
-
 
     if (!currentBoard) {
         return <p>Loading</p>;
