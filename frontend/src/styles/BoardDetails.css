@@ -40,6 +40,9 @@
     border-color: #eed995;
 
     box-shadow: 0 0 3px rgb(0, 0, 0, 0.2);
+
+    max-height: calc(100vh - 50px - 60px);
+    overflow-y: auto;
 }
 
 .unpinned-section {

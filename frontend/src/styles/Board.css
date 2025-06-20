@@ -1,4 +1,6 @@
 .board {
+    position: relative;
+    
     background-color: #F2B97C;
     width: 250px;
 
