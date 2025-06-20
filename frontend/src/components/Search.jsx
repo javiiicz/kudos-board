@@ -1,8 +1,22 @@
 import "../styles/Search.css";
+import { useState } from "react";
 
-const Search = ({ searchField, setSearchField, handleSearchSubmit, clearSearch }) => {
+const Search = ({ fetchBoards }) => {
+    const [searchField, setSearchField] = useState("");
+
     const handleInputChange = (e) => {
         setSearchField(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        fetchBoards(searchField, filter);
+        setSearchField("");
+    };
+
+    const clearSearch = () => {
+        fetchBoards();
+        setSearchField("");
     };
 
     return (
@@ -15,11 +29,7 @@ const Search = ({ searchField, setSearchField, handleSearchSubmit, clearSearch }
             ></input>
             <div className="buttons">
                 <button type="submit">Submit</button>
-                <button
-                    onClick={clearSearch}
-                >
-                    Clear
-                </button>
+                <button onClick={clearSearch}>Clear</button>
             </div>
         </form>
     );

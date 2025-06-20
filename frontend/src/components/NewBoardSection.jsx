@@ -1,12 +1,18 @@
 import { X } from "lucide-react";
 import "../styles/NewBoardSection.css";
+import { useState } from "react";
 
 const NewBoardSection = ({
     setShowModal,
-    handleAddSubmit,
-    addFormData,
-    setAddFormData,
+    createBoard
 }) => {
+    const [addFormData, setAddFormData] = useState({
+            title: "",
+            imageUrl: "",
+            category: "",
+            author: "",
+        });
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setAddFormData({
@@ -14,6 +20,18 @@ const NewBoardSection = ({
             [name]: value,
         });
     };
+
+    const handleAddSubmit = async (e) => {
+            e.preventDefault();
+            await createBoard(addFormData);
+            setAddFormData({
+                title: "",
+                imageUrl: "",
+                category: "",
+                author: "",
+            });
+            setShowModal(false);
+        };
 
     return (
         <div className="modal-container">

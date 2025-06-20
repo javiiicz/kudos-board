@@ -2,7 +2,7 @@ import Card from "./Card";
 import "../styles/BoardDetails.css";
 import NewCardForm from "./NewCardForm";
 import CardModal from "./CardModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const BoardDetails = ({
     id,
@@ -12,36 +12,23 @@ const BoardDetails = ({
     toggleCardUpvote,
     showCardModal,
     setShowCardModal,
-    fetchGIFS,
     gifSearch,
     setGifSearch,
-    gifResults,
-    cardFormData,
-    setCardFormData,
-    setGifResults,
-    handleCardAddSubmit,
     toggleCardPin,
-    selectedCard,
-    setSelectedCard,
-    showComments,
-    setShowComments,
+    createCard
 }) => {
     if (!currentBoard) {
         return <p>Loading</p>;
     }
 
+    const [showComments, setShowComments] = useState(false)
+    const [selectedCard, setSelectedCard] = useState(null);
+
     if (showCardModal) {
         return (
             <NewCardForm
                 setShowCardModal={setShowCardModal}
-                fetchGIFS={fetchGIFS}
-                gifSearch={gifSearch}
-                setGifSearch={setGifSearch}
-                gifResults={gifResults}
-                cardFormData={cardFormData}
-                setCardFormData={setCardFormData}
-                setGifResults={setGifResults}
-                handleCardAddSubmit={handleCardAddSubmit}
+                createCard={createCard}
             />
         );
     }

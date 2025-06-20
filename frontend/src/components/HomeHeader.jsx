@@ -6,21 +6,15 @@ import Title from "./Title";
 
 const HomeHeader = ({
     setShowModal,
-    searchField,
-    setSearchField,
-    handleSearchSubmit,
-    clearSearch,
     filter,
     setFilter,
+    fetchBoards
 }) => {
     return (
         <header>
             <Title />
             <Search
-                searchField={searchField}
-                setSearchField={setSearchField}
-                handleSearchSubmit={handleSearchSubmit}
-                clearSearch={clearSearch}
+                fetchBoards={fetchBoards}
             />
             <Filters filter={filter} setFilter={setFilter} />
             <CreateButton setShowModal={setShowModal} />

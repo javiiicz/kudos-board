@@ -5,39 +5,29 @@ import { useState } from "react";
 
 const HomePage = ({
     boards,
-    handleAddSubmit,
     showModal,
     setShowModal,
-    addFormData,
-    setAddFormData,
     deleteBoard,
-    searchField,
-    setSearchField,
-    handleSearchSubmit,
-    clearSearch,
     filter,
     setFilter,
+    createBoard,
+    fetchBoards
 }) => {
     return (
         <>
             <HomeHeader
                 setShowModal={setShowModal}
-                searchField={searchField}
-                setSearchField={setSearchField}
-                handleSearchSubmit={handleSearchSubmit}
-                clearSearch={clearSearch}
                 filter={filter}
                 setFilter={setFilter}
+                fetchBoards={fetchBoards}
             />
             <main className="home-main">
                 <BoardDisplay
                     boards={boards}
                     showModal={showModal}
                     setShowModal={setShowModal}
-                    handleAddSubmit={handleAddSubmit}
-                    addFormData={addFormData}
-                    setAddFormData={setAddFormData}
                     deleteBoard={deleteBoard}
+                    createBoard={createBoard}
                 />
             </main>
         </>

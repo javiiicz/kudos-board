@@ -2,23 +2,41 @@ import { X } from "lucide-react";
 import "../styles/NewCardForm.css";
 import GIFSelector from "./GIFSelector";
 
-const NewCardForm = ({
-    setShowCardModal,
-    fetchGIFS,
-    gifSearch,
-    setGifSearch,
-    gifResults,
-    cardFormData,
-    setCardFormData,
-    setGifResults,
-    handleCardAddSubmit
-}) => {
+const NewCardForm = ({ setShowCardModal, createCard }) => {
+    const [cardFormData, setCardFormData] = useState({
+        message: "",
+        gifUrl: "",
+        author: "",
+        color: "yellow",
+    });
+    const [gifResults, setGifResults] = useState([]);
+    const [gifSearch, setGifSearch] = useState("");
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCardFormData({
             ...cardFormData,
             [name]: value,
         });
+    };
+
+    const handleCardAddSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!cardFormData.gifUrl) {
+            return;
+        }
+
+        await createCard(cardFormData);
+        setCardFormData({
+            message: "",
+            gifUrl: "",
+            author: "",
+            color: "yellow",
+        });
+        setGifResults([]);
+        setGifSearch("");
+        setShowCardModal(false);
     };
 
     return (
@@ -32,10 +50,7 @@ const NewCardForm = ({
             />
             <div className="form-container">
                 <h2>Create a new Card:</h2>
-                <form
-                    className="add-form"
-                    onSubmit={handleCardAddSubmit}
-                >
+                <form className="add-form" onSubmit={handleCardAddSubmit}>
                     <div className="form-group">
                         <label>Message*</label>
                         <input
@@ -62,7 +77,6 @@ const NewCardForm = ({
                     <div className="form-group">
                         <label>GIF*</label>
                         <GIFSelector
-                            fetchGIFS={fetchGIFS}
                             gifSearch={gifSearch}
                             setGifSearch={setGifSearch}
                             gifResults={gifResults}

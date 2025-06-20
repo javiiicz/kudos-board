@@ -6,18 +6,14 @@ const BoardDisplay = ({
     boards,
     showModal,
     setShowModal,
-    handleAddSubmit,
-    addFormData,
-    setAddFormData,
     deleteBoard,
+    createBoard
 }) => {
     if (showModal) {
         return (
             <NewBoardSection
                 setShowModal={setShowModal}
-                handleAddSubmit={handleAddSubmit}
-                addFormData={addFormData}
-                setAddFormData={setAddFormData}
+                createBoard={createBoard}
             />
         );
     }

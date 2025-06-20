@@ -1,7 +1,7 @@
 import "../styles/GIFSelector.css";
+import { callGiphyApi } from "../utils/utils";
 
 const GIFSelector = ({
-    fetchGIFS,
     gifSearch,
     setGifSearch,
     gifResults,
@@ -16,6 +16,11 @@ const GIFSelector = ({
 
     const handleFieldChange = (e) => {
         setGifSearch(e.target.value);
+    };
+
+    const fetchGIFS = async () => {
+        let gifs = await callGiphyApi(gifSearch);
+        setGifResults(gifs);
     };
 
     const selectGif = (gif) => {
