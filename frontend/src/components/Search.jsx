@@ -1,7 +1,7 @@
 import "../styles/Search.css";
 import { useState } from "react";
 
-const Search = ({ fetchBoards }) => {
+const Search = ({ fetchBoards, filter }) => {
     const [searchField, setSearchField] = useState("");
 
     const handleInputChange = (e) => {

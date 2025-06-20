@@ -13,7 +13,7 @@ const HomeHeader = ({
     return (
         <header>
             <Title />
-            <Search fetchBoards={fetchBoards} />
+            <Search fetchBoards={fetchBoards} filter={filter}/>
             <Filters filter={filter} setFilter={setFilter} />
             <CreateButton setShowModal={setShowModal} />
         </header>
