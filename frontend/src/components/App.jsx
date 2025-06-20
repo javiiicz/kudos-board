@@ -10,11 +10,16 @@ function App() {
     const navigate = useNavigate();
 
     const [error, setError] = useState(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     const handleError = (err) => {
         setError(err);
         navigate("/error");
-    }
+    };
+
+    useEffect(() => {
+        document.querySelector('#root').classList.toggle("dark-mode")
+    }, [isDarkMode])
 
     return (
         <>
@@ -35,9 +40,16 @@ function App() {
                         />
                     }
                 />
-                <Route path="/*" element={<ErrorPage error={error} />} />
+                <Route
+                    path="/*"
+                    element={
+                        <ErrorPage
+                            error={error}
+                        />
+                    }
+                />
             </Routes>
-            <Footer />
+            <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
         </>
     );
 }

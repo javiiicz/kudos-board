@@ -1,8 +1,10 @@
 .title-button {
-    background-color: #e9edc9;
+    background-color: var(--title-bg);
+    color: var(--text-color);
     border-style: dotted;
     border-width: 5px;
     border-radius: 30px;
+    border-color: var(--header-border);
     padding: 20px;
     font-weight: 800;
     text-decoration: none;

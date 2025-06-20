@@ -1,17 +1,17 @@
 .yellow {
-    background-color: #eded79;
+    background-color: var(--card-yellow);
 }
 
 .blue {
-    background-color: #31dad8;
+    background-color: var(--card-blue);
 }
 
 .pink {
-    background-color: #f380d1;
+    background-color: var(--card-pink);
 }
 
 .green {
-    background-color: #97cb60;
+    background-color: var(--card-green);
 }
 
 .kudos-card {

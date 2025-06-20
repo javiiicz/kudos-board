@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import "../styles/NewCardForm.css";
 import GIFSelector from "./GIFSelector";
+import { useState } from "react";
 
 const NewCardForm = ({ setShowCardModal, createCard }) => {
     const [cardFormData, setCardFormData] = useState({

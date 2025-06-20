@@ -42,7 +42,7 @@ const NewBoardSection = ({
                 size={30}
                 className="close-button"
             />
-            <div className="form-container">
+            <div className="board-form-container">
                 <h2>Create a new Board:</h2>
                 <form className="add-form" onSubmit={handleAddSubmit}>
                     <div className="form-group">

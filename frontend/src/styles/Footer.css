@@ -1,12 +1,12 @@
 footer {
     grid-area: footer;
 
-    background: #fefae0;
+    background: var(--footer-background);
     background: linear-gradient(
         90deg,
-        rgba(254, 250, 224, 1) 0%,
-        rgba(250, 237, 205, 1) 59%,
-        rgba(212, 163, 115, 1) 100%
+        var(--footer-1) 0%,
+        var(--footer-2) 59%,
+        var(--footer-3) 100%
     );
 
     display: flex;
@@ -14,12 +14,19 @@ footer {
     justify-content: center;
 
     border-top-style: solid;
-    border-top-color: #ddb892;
+    border-top-color: var(--footer-3);
 
     z-index: 2;
 }
 
 .footer-text {
+    user-select: none;
     font-weight: 600;
-    color: #463f3a;
+}
+
+.mode-toggle {
+    position: absolute;
+    left: 20px;
+
+    cursor: pointer;
 }

@@ -1,4 +1,9 @@
 .error-main {
+    background: radial-gradient(
+        circle,
+        var(--background-center) 0%,
+        var(--background-halo) 95%
+    );
     display: flex;
     flex-direction: column;
     align-items: center;

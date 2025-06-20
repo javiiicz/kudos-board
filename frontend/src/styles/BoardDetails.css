@@ -13,10 +13,10 @@
 
 .board-details-container {
     padding: 10px;
-    background-color: white;
+    background-color: var(--board-button-bg);
     border-style: solid;
     border-width: 1px;
-    border-color: #ddb892;
+    border-color: var(--board-border);
 
     display: flex;
     flex-direction: col;
@@ -32,12 +32,12 @@
 
 .board-details {
     
-    background-color: #f2b97c;
+    background-color: var(--board-bg);
 
     padding: 10px;
     border-style: solid;
     border-width: 6px;
-    border-color: #eed995;
+    border-color: var(--board-border);
 
     box-shadow: 0 0 3px rgb(0, 0, 0, 0.2);
 
@@ -50,7 +50,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: start;
-    justify-content: start;
+    justify-content: center;
     gap: 30px;
 }
 
@@ -59,6 +59,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: start;
-    justify-content: start;
+    justify-content: center;
     gap: 30px;
 }

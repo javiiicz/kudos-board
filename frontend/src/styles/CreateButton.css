@@ -1,12 +1,12 @@
 .create-button {
-    background-color: white;
+    background-color: var(--board-button-bg);
     padding: 20px;
     border-radius: 30px;
     font-weight: 600;
     border-style: solid;
-    border-color: #cd9777;
+    border-color: var(--board-button-border);
 }
 
 .create-button:hover {
-    background-color: #edc4b3;
+    background-color: var(--board-button-highlight);
 }

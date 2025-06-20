@@ -1,7 +1,7 @@
 .board {
     position: relative;
     
-    background-color: #F2B97C;
+    background-color: var(--board-bg);
     width: 250px;
 
     display: flex;
@@ -13,7 +13,7 @@
     padding: 10px;
     border-style: solid;
     border-width: 6px;
-    border-color: #EED995;
+    border-color: var(--board-border);
 
     box-shadow: 0 0 3px rgb(0,0,0,0.2);
 
@@ -27,7 +27,7 @@
 
 .category {
     display: block;
-    background-color: white;
+    background-color: var(--filter-bg);
     border-radius: 20px;
     padding: 0px 10px;
     font-size: 15px;

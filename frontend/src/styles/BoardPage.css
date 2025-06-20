@@ -1,11 +1,10 @@
 .board-main {
-    position: relative;
-    background: white;
     background: radial-gradient(
         circle,
-        white 0%,
-        rgba(250, 250, 235, 1) 95%
+        var(--background-center) 0%,
+        var(--background-halo) 95%
     );
+    position: relative;
 
     padding: 30px;
 }

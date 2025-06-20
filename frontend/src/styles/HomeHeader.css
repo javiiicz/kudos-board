@@ -4,17 +4,16 @@ header {
     align-items: center;
     justify-content: space-between;
 
-    background: #edfff3;
     background: linear-gradient(
         180deg,
-        rgba(204, 213, 174, 1) 0%,
-        rgba(165, 165, 141, 1) 100%
+        var(--header-1) 0%,
+        var(--header-2) 100%
     );
 
     padding: 10% 20px;
 
     border-right-style: solid;
-    border-right-color: #b7b7a4;
+    border-right-color: var(--header-border);
 
     box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2);
 

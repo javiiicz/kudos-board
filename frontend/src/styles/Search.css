@@ -1,4 +1,5 @@
 .search-container {
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -9,6 +10,7 @@
 .buttons {
     display: flex;
     flex-direction: row;
+    gap: 2px
 }
 
 .buttons button {

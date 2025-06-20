@@ -1,5 +1,5 @@
 .gif-selector-container {
-    background-color: #e5e5e5;
+    background-color: var(--board-button-highlight);
     padding: 5px;
 }
 

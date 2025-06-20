@@ -1,3 +1,59 @@
+:root{
+    color-scheme: light;
+    --text-color: #463f3a;
+    --background-center: white;
+    --background-halo: rgba(250, 250, 235, 1);
+    --footer-background: #fefae0;
+    --footer-1: #FEFAE0;
+    --footer-2: #FAEDCD;
+    --footer-3: #D4A373;
+    --header-1: #CCD5AE;
+    --header-2: #A5A58D;
+    --header-border: #B7B7A4;
+    --title-bg: #E9EDC8;
+    --button-bg: #EFEFEF;
+    --filter-bg: white;
+    --board-bg: #F2B97C;
+    --board-border: #EED995;
+    --board-button-bg: #FFF;
+    --board-button-border: #CD9777;
+    --board-button-highlight: #ECC5B2;
+    --card-yellow: #EDED79;
+    --card-pink: #F380D1;
+    --card-blue: #31DAD8;
+    --card-green: #97CB60;
+    --modal-shadow: rgb(0, 0, 0, 0.2)
+
+}
+
+.dark-mode {
+    color-scheme:dark;
+    --text-color: white;
+    --background-center: #3C3C3C;
+    --background-halo: #31342F;
+    --footer-background: #646259;
+    --footer-1: #2C201C;
+    --footer-2: #432D20;
+    --footer-3: #4A3120;
+    --header-1: #4E5340;
+    --header-2: #3D3D37;
+    --header-border: #6E6E5E;
+    --title-bg: #2C2F23;
+    --button-bg: #3C3C3C;
+    --filter-bg: #2D2F23;
+    --board-bg: #65412E;
+    --board-border: #674E34;
+    --board-button-bg: #231A15;
+    --board-button-border: #281D16;
+    --board-button-highlight: #372218;
+    --card-yellow: #838337;
+    --card-pink: #893670;
+    --card-blue: #2E6766;
+    --card-green: #526B38;
+    --modal-shadow: rgb(255, 255, 255, 0.2);
+}
+
+
 #root {
     display: grid;
     grid-template-columns: 250px auto;
@@ -6,8 +62,10 @@
     align-items: stretch;
     justify-items: stretch;
     height: 100vh;
-    color: #463f3a;
+    color: var(--text-color);
 }
+
+
 
 @media (max-width: 800px) {
     #root {
